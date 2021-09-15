@@ -1,0 +1,638 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Finances</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0ee9073a-74f1-49ff-8057-61a4de18560b" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Finances%200ee9073a74f149ff805761a4de18560b/chart.png"/></div><h1 class="page-title">Finances</h1></header><div class="page-body"><ul id="900151c4-b058-410a-a9cb-28915a6562a8" class="block-color-teal_background toggle"><li><details open=""><summary><strong>August</strong></summary><div id="573581b8-6fa6-4f45-b145-b0b0125ab5de" class="collection-content"><h4 class="collection-title">Budget | August</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Budget</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Notes</th></tr></thead><tbody><tr id="07b5dc42-17a8-4245-ba57-9ef43d1f5a71"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/INCOME%2007b5dc4217a84245ba579ef43d1f5a71.html">INCOME</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f213a8ef-2ab8-4f8d-9dd3-bbc74b324e91"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Income%20Total%20f213a8ef2ab84f8d9dd3bbc74b324e91.html">Income Total</a></td><td class="cell-&lt;?3y">$1,272.00</td><td class="cell-|LXa"></td></tr><tr id="9a1617d2-dc19-4d96-bece-8f3695b56d07"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Other%20Income%209a1617d2dc194d96bece8f3695b56d07.html">Other Income</a></td><td class="cell-&lt;?3y">$50.00</td><td class="cell-|LXa"></td></tr><tr id="f5a55739-57b7-4d05-8b67-8964351fbd0c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Untitled%20f5a5573957b74d058b678964351fbd0c.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="3718ffcb-a389-49a8-8b6d-e9157f39fc4a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/EXPENSES%203718ffcba38949a88b6de9157f39fc4a.html">EXPENSES</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="dbdd33b2-1198-48de-9994-18dd125c8742"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Mortgage%20Rent%20dbdd33b2119848de999418dd125c8742.html">Mortgage / Rent</a></td><td class="cell-&lt;?3y">-$1,200.00</td><td class="cell-|LXa"></td></tr><tr id="2e69b10f-a354-4366-96b1-ff595317229b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Household%20Maintenance%202e69b10fa354436696b1ff595317229b.html">Household Maintenance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="367e5fba-d603-4dd7-ad1b-3a9f4262973f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Taxes%20367e5fbad6034dd7ad1b3a9f4262973f.html">Taxes</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="1ac751d0-49fd-46bf-8e72-d87af5be7802"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Insurance%201ac751d049fd46bf8e72d87af5be7802.html">Insurance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="97058519-9131-4ffe-8d58-d2a6ee4b4b0b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Electricity%209705851991314ffe8d58d2a6ee4b4b0b.html">Electricity</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="18636432-d883-4ce5-9d1f-6ec1d2e07ed8"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Water%2018636432d8834ce59d1f6ec1d2e07ed8.html">Water</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="4c01ff17-28fd-400c-a557-3cb79ce27002"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Sewage%204c01ff1728fd400ca5573cb79ce27002.html">Sewage</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="24617a66-a63d-4265-b10d-7127e64813d6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Gas%2024617a66a63d4265b10d7127e64813d6.html">Gas</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="3c4a7a1a-dfe7-40dd-8efa-04600398eada"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Phone%203c4a7a1adfe740dd8efa04600398eada.html">Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="83cf28aa-8208-464e-8647-fab8242c92af"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Trash%2083cf28aa8208464e8647fab8242c92af.html">Trash</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="0f6c3678-0da6-488b-a122-4e06fd7ad657"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Cable%200f6c36780da6488ba1224e06fd7ad657.html">Cable</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="b59f6b13-4d72-4edc-9d98-9bdfd1f74b02"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Cell%20Phone%20b59f6b134d724edc9d989bdfd1f74b02.html">Cell Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="1e4d30b0-e6a6-43f7-b759-689c7cbf8cc6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Groceries%201e4d30b0e6a643f7b759689c7cbf8cc6.html">Groceries</a></td><td class="cell-&lt;?3y">-$15.00</td><td class="cell-|LXa"></td></tr><tr id="046d8f05-9f2d-464a-8ffe-02b549ca5984"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Entertainment%20046d8f059f2d464a8ffe02b549ca5984.html">Entertainment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="db2dd48c-1d1a-4f26-8424-dc7d1b936e01"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Charity%20db2dd48c1d1a4f268424dc7d1b936e01.html">Charity</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ccebc583-41a6-40c6-a4f7-fcb2ca48a4ec"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Fuel%20ccebc58341a640c6a4f7fcb2ca48a4ec.html">Fuel</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="9ed507e7-d4f7-412c-8e7a-831502d54729"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Car%20Insurance%209ed507e7d4f7412c8e7a831502d54729.html">Car Insurance</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4a7ada4b-b4e5-432d-9af7-f07f6401c5ab"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Car%20Payment%204a7ada4bb4e5432d9af7f07f6401c5ab.html">Car Payment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="9efa80fc-e2c2-4aeb-9752-173c4c21988b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Credit%20Cards%20Debt%209efa80fce2c24aeb9752173c4c21988b.html">Credit Cards / Debt</a></td><td class="cell-&lt;?3y">-$50.00</td><td class="cell-|LXa"></td></tr><tr id="1b0aa09b-27ea-472e-8931-01a41a922187"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Loans%201b0aa09b27ea472e893101a41a922187.html">Loans</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="c4e11150-d2e5-418b-9aa7-2f9aad022686"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Child%20Support%20c4e11150d2e5418b9aa72f9aad022686.html">Child Support</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="cbe5980b-4624-476b-9dff-e67611cd2e5a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Clothing%20cbe5980b4624476b9dffe67611cd2e5a.html">Clothing</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="d4ccac35-04e8-4e86-863e-eb7579c84029"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Untitled%20d4ccac3504e84e86863eeb7579c84029.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="fbf05c4a-671e-4166-9edd-68a721487372"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/SAVINGS%20fbf05c4a671e41669edd68a721487372.html">SAVINGS</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="85bcc941-386f-48f5-8d0b-9dc195bef626"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Retirement%2085bcc941386f48f58d0b9dc195bef626.html">Retirement</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ec6ff91b-14a8-4de1-b181-3f454c16b194"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/College%20ec6ff91b14a84de1b1813f454c16b194.html">College</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="c5bce08c-ebde-4a35-a119-bd95ea1ff7a5"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Basic%20c5bce08cebde4a35a119bd95ea1ff7a5.html">Basic</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="48f2c7d4-bf78-4760-b9cc-70d051bf3c27"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20August%20573581b86fa64f45b145b0b0125ab5de/Other%2048f2c7d4bf784760b9cc70d051bf3c27.html">Other</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr></tbody></table></div></details></li></ul><ul id="8cf8c03b-14b0-4a2c-9acc-1a6ec64a46ad" class="block-color-orange_background toggle"><li><details open=""><summary><strong>September</strong></summary><div id="1c93a8c8-c5f6-447a-b9b2-101e39b4e92a" class="collection-content"><h4 class="collection-title">Budget</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Budget</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Notes</th></tr></thead><tbody><tr id="abc9a610-4b99-4e6e-ad3a-8273b28a20d7"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/INCOME%20abc9a6104b994e6ead3a8273b28a20d7.html">INCOME</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="1e2add59-37e1-466d-ae93-a2ee1ddb5471"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Income%20Total%201e2add5937e1466dae93a2ee1ddb5471.html">Income Total</a></td><td class="cell-&lt;?3y">$1,792.00</td><td class="cell-|LXa"></td></tr><tr id="2c4dfbc7-5acd-43c3-934f-24e0e1cd06c2"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Other%20Income%202c4dfbc75acd43c3934f24e0e1cd06c2.html">Other Income</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="9171561d-d164-44c4-82d3-bdd743726c2c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Untitled%209171561dd16444c482d3bdd743726c2c.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f9a47ddc-c15e-4718-b776-01577ba5ec3f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/EXPENSES%20f9a47ddcc15e4718b77601577ba5ec3f.html">EXPENSES</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f9923b14-217b-482b-b006-c0f2350c9167"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Mortgage%20Rent%20f9923b14217b482bb006c0f2350c9167.html">Mortgage / Rent</a></td><td class="cell-&lt;?3y">-$1,200.00</td><td class="cell-|LXa"></td></tr><tr id="48d0bc94-08cc-4dd7-a659-d959c8a3f2fe"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Household%20Maintenance%2048d0bc9408cc4dd7a659d959c8a3f2fe.html">Household Maintenance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="cd99bcda-ba10-4afc-8e25-64a43f7f214b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Taxes%20cd99bcdaba104afc8e2564a43f7f214b.html">Taxes</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="23cf8308-ba63-402b-bb5e-250cb4c4470f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Insurance%2023cf8308ba63402bbb5e250cb4c4470f.html">Insurance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="d4b9bc9d-794a-499f-ad79-8a1ac0b58f01"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Electricity%20d4b9bc9d794a499fad798a1ac0b58f01.html">Electricity</a></td><td class="cell-&lt;?3y">-$268.00</td><td class="cell-|LXa">$134 was overdue from August to be paid on or before September 7th borrow if necessary </td></tr><tr id="2cd5b2d0-49b3-435a-9f99-6496dc75b456"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Water%202cd5b2d049b3435a9f996496dc75b456.html">Water</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="cc3b289f-d6ad-463b-a65d-312f41ffac9c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Sewage%20cc3b289fd6ad463ba65d312f41ffac9c.html">Sewage</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="6a95f9f2-f21f-4ada-858e-5de6d800045c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Gas%206a95f9f2f21f4ada858e5de6d800045c.html">Gas</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="29a51365-eaea-4359-82fc-ec69bf8f30c2"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Phone%2029a51365eaea435982fcec69bf8f30c2.html">Phone</a></td><td class="cell-&lt;?3y">-$263.00</td><td class="cell-|LXa"></td></tr><tr id="8017ba94-6a23-4f7d-bb4c-e9230d631188"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Trash%208017ba946a234f7dbb4ce9230d631188.html">Trash</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="1ecfc2a6-e17b-4a50-a317-488e8c4ee5ac"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Cable%201ecfc2a6e17b4a50a317488e8c4ee5ac.html">Cable</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="cace51f4-c600-4216-91ff-0081816f8ef8"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Cell%20Phone%20cace51f4c600421691ff0081816f8ef8.html">Cell Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="c4803c8f-b08d-4b1a-8b46-99515f6a2108"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Groceries%20c4803c8fb08d4b1a8b4699515f6a2108.html">Groceries</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4cdfdf46-ea38-4d0b-b63e-84ebf9a47bf6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Entertainment%204cdfdf46ea384d0bb63e84ebf9a47bf6.html">Entertainment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="88d9e047-a6ad-44a3-9c00-0e43e5445594"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Charity%2088d9e047a6ad44a39c000e43e5445594.html">Charity</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="36a9ec3b-8e97-467b-ab50-2c98f6e4f83b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Fuel%2036a9ec3b8e97467bab502c98f6e4f83b.html">Fuel</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="e877913c-b8f5-4952-91a7-07a92ced910c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Car%20Insurance%20e877913cb8f5495291a707a92ced910c.html">Car Insurance</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="5ece6124-922f-4ab9-bcde-0df8cb4f614a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Car%20Payment%205ece6124922f4ab9bcde0df8cb4f614a.html">Car Payment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="6da8bf9b-77a2-45c3-afb4-9555927fab91"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Credit%20Cards%20Debt%206da8bf9b77a245c3afb49555927fab91.html">Credit Cards / Debt</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="75d2b65c-47b1-4759-bfac-2f91cfe30440"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Loans%2075d2b65c47b14759bfac2f91cfe30440.html">Loans</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="12e46475-4cb6-4fca-830f-db062ec67fe1"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Child%20Support%2012e464754cb64fca830fdb062ec67fe1.html">Child Support</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="e9794c56-4cf1-475a-93cb-066794b304df"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Clothing%20e9794c564cf1475a93cb066794b304df.html">Clothing</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="b8ee1bd2-8495-4a2e-a7f8-c8b0a1d470a0"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Untitled%20b8ee1bd284954a2ea7f8c8b0a1d470a0.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f1cb3fe3-d131-415e-94ae-ea57598b6e69"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/SAVINGS%20f1cb3fe3d131415e94aeea57598b6e69.html">SAVINGS</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="231c74f4-809e-4d5e-a416-1615997d760e"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Retirement%20231c74f4809e4d5ea4161615997d760e.html">Retirement</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="3879c416-74b6-40f2-9999-d61a4d3078d1"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/College%203879c41674b640f29999d61a4d3078d1.html">College</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="23786191-2048-4f83-8cd1-c4359d611a61"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Basic%202378619120484f838cd1c4359d611a61.html">Basic</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="d944bb58-d8f9-4ccd-80bb-7370e2303565"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%201c93a8c8c5f6447ab9b2101e39b4e92a/Other%20d944bb58d8f94ccd80bb7370e2303565.html">Other</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr></tbody></table></div></details></li></ul><ul id="f3b540c0-c1a8-48ff-9769-184bc6858d70" class="block-color-yellow_background toggle"><li><details open=""><summary><strong>October</strong></summary><div id="63471feb-e1a0-4485-ac3b-c016d387d603" class="collection-content"><h4 class="collection-title">Budget  </h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Budget</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Notes</th></tr></thead><tbody><tr id="4af4bc0a-ee7b-4025-81ff-56a76220c20a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/INCOME%204af4bc0aee7b402581ff56a76220c20a.html">INCOME</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="6c8104f0-3957-4ab7-8a54-01c1f79b806b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Income%20Total%206c8104f039574ab78a5401c1f79b806b.html">Income Total</a></td><td class="cell-&lt;?3y">$1,792.00</td><td class="cell-|LXa"></td></tr><tr id="39f31f78-5bda-4289-8b4e-d303975d5314"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Other%20Income%2039f31f785bda42898b4ed303975d5314.html">Other Income</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="2a944fcd-72f6-450b-9b29-455812061257"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Untitled%202a944fcd72f6450b9b29455812061257.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="df0bbd1b-c3bc-46cb-9004-2a55812d52ce"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/EXPENSES%20df0bbd1bc3bc46cb90042a55812d52ce.html">EXPENSES</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a3237425-9a22-4c39-9954-3132a4a1b8f0"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Mortgage%20Rent%20a32374259a224c3999543132a4a1b8f0.html">Mortgage / Rent</a></td><td class="cell-&lt;?3y">-$1,200.00</td><td class="cell-|LXa"></td></tr><tr id="ac24ce0b-7d91-43da-bcaa-b9762abd7fc7"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Household%20Maintenance%20ac24ce0b7d9143dabcaab9762abd7fc7.html">Household Maintenance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="24be5c65-434e-45c8-8073-35beb6a23c4b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Taxes%2024be5c65434e45c8807335beb6a23c4b.html">Taxes</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="7f7a8b8e-ce01-49be-987a-d5c0e7bb1951"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Insurance%207f7a8b8ece0149be987ad5c0e7bb1951.html">Insurance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="d730542a-b031-447a-b053-6228ae034f22"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Electricity%20d730542ab031447ab0536228ae034f22.html">Electricity</a></td><td class="cell-&lt;?3y">-$134.00</td><td class="cell-|LXa"></td></tr><tr id="2e20a268-78f0-4d33-9397-a5a99931ab64"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Water%202e20a26878f04d339397a5a99931ab64.html">Water</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="c3188a74-84f0-40d9-8cf6-b639f3ffe9da"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Sewage%20c3188a7484f040d98cf6b639f3ffe9da.html">Sewage</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="2ec0191f-7d81-4a38-92a9-bcf6a88f6b5f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Gas%202ec0191f7d814a3892a9bcf6a88f6b5f.html">Gas</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="84346c9f-d0cb-47c8-841d-949dabedc498"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Phone%2084346c9fd0cb47c8841d949dabedc498.html">Phone</a></td><td class="cell-&lt;?3y">-$263.00</td><td class="cell-|LXa"></td></tr><tr id="092462fa-5189-4ce4-827b-05535faae711"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Trash%20092462fa51894ce4827b05535faae711.html">Trash</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ec1ff31f-48cb-47f6-b72d-c3ce46466f61"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Cable%20ec1ff31f48cb47f6b72dc3ce46466f61.html">Cable</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4da855ce-22ab-40c8-8c38-95bf1a366594"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Cell%20Phone%204da855ce22ab40c88c3895bf1a366594.html">Cell Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="41861a51-eabf-4043-acc2-ace421ed6d1d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Groceries%2041861a51eabf4043acc2ace421ed6d1d.html">Groceries</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="0a5e2fce-a0ce-43c7-94cc-55a3b2745ac6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Entertainment%200a5e2fcea0ce43c794cc55a3b2745ac6.html">Entertainment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="cd30d92d-c34b-43a4-bfdf-3b31fd119f96"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Charity%20cd30d92dc34b43a4bfdf3b31fd119f96.html">Charity</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="888a3cc3-d9d3-468e-9877-997b552d9b80"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Fuel%20888a3cc3d9d3468e9877997b552d9b80.html">Fuel</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="49b95dec-6794-4eff-9b46-53b39599f0de"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Car%20Insurance%2049b95dec67944eff9b4653b39599f0de.html">Car Insurance</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="7f0e52fd-0696-48b4-a630-58df1c9a04f5"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Car%20Payment%207f0e52fd069648b4a63058df1c9a04f5.html">Car Payment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="efc942f0-58ce-442e-8ad1-2f3ed5460557"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Credit%20Cards%20Debt%20efc942f058ce442e8ad12f3ed5460557.html">Credit Cards / Debt</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a6427446-3680-47c0-9e3f-0abbac2defa3"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Loans%20a6427446368047c09e3f0abbac2defa3.html">Loans</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ba6e50f4-c483-47d8-82a3-4286e3335e28"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Child%20Support%20ba6e50f4c48347d882a34286e3335e28.html">Child Support</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="23dec84f-dc72-43a4-97b5-5d54c75841ac"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Clothing%2023dec84fdc7243a497b55d54c75841ac.html">Clothing</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="7da83e2d-c674-4340-9ff0-720655106e22"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Untitled%207da83e2dc67443409ff0720655106e22.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="c0ea943d-c2c0-4cd2-a5c2-cef4c9d16ccc"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/SAVINGS%20c0ea943dc2c04cd2a5c2cef4c9d16ccc.html">SAVINGS</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="6992fcdf-87ce-4ef0-a7e1-4b01f508e79c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Retirement%206992fcdf87ce4ef0a7e14b01f508e79c.html">Retirement</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="be096c1b-22c1-4209-b9bd-b7863765c882"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/College%20be096c1b22c14209b9bdb7863765c882.html">College</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="e3a4c169-a204-4862-91f3-ce030a905b1a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Basic%20e3a4c169a204486291f3ce030a905b1a.html">Basic</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="1aa6c18f-53ae-4e36-9d5d-5cb1ed5a563d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%2063471febe1a04485ac3bc016d387d603/Other%201aa6c18f53ae4e369d5d5cb1ed5a563d.html">Other</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr></tbody></table></div></details></li></ul><ul id="8fce2785-ecd6-4d35-95ee-d068329e6dd2" class="block-color-pink_background toggle"><li><details open=""><summary><strong>November</strong></summary><div id="83228984-a840-4b7e-aca8-3401bda51694" class="collection-content"><h4 class="collection-title">Budget | November </h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Budget</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Notes</th></tr></thead><tbody><tr id="5a7a2122-e037-4f3a-9e84-b2f605bc9890"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/INCOME%205a7a2122e0374f3a9e84b2f605bc9890.html">INCOME</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ea24ba71-7e7c-4a8e-9f58-a8eeb3fcf459"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Income%20Total%20ea24ba717e7c4a8e9f58a8eeb3fcf459.html">Income Total</a></td><td class="cell-&lt;?3y">$1,792.00</td><td class="cell-|LXa"></td></tr><tr id="0acec0cf-e1a8-4388-adc7-b6dc86d296e2"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Other%20Income%200acec0cfe1a84388adc7b6dc86d296e2.html">Other Income</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="71574b1e-4312-4654-9f39-d1a9a01dfe33"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Untitled%2071574b1e431246549f39d1a9a01dfe33.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="0f7d82cf-15a4-47b2-8054-3cbba8a05f1d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/EXPENSES%200f7d82cf15a447b280543cbba8a05f1d.html">EXPENSES</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="96417013-879d-4461-b694-ffb69c5dd257"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Mortgage%20Rent%2096417013879d4461b694ffb69c5dd257.html">Mortgage / Rent</a></td><td class="cell-&lt;?3y">-$1,200.00</td><td class="cell-|LXa"></td></tr><tr id="0400454c-fc81-4277-81be-4f4e5d1db4d0"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Household%20Maintenance%200400454cfc81427781be4f4e5d1db4d0.html">Household Maintenance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="82fe0521-3c58-43cd-80cb-394ba6e5aa4a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Taxes%2082fe05213c5843cd80cb394ba6e5aa4a.html">Taxes</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="ff862515-9583-4909-b1a0-84b15a7657f8"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Insurance%20ff86251595834909b1a084b15a7657f8.html">Insurance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="21ebc229-8089-44db-80ad-7dd6e9813438"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Electricity%2021ebc229808944db80ad7dd6e9813438.html">Electricity</a></td><td class="cell-&lt;?3y">-$134.00</td><td class="cell-|LXa"></td></tr><tr id="38cd1bab-a130-4ac1-8e19-5f1aca37e315"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Water%2038cd1baba1304ac18e195f1aca37e315.html">Water</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="9a1066e0-4127-4df9-ae27-7db6aa031e5d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Sewage%209a1066e041274df9ae277db6aa031e5d.html">Sewage</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f2d6d3d0-6f04-4a0b-9dea-4a6f7a5492b5"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Gas%20f2d6d3d06f044a0b9dea4a6f7a5492b5.html">Gas</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="660e2795-e293-449c-94b5-ab47d65d6d66"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Phone%20660e2795e293449c94b5ab47d65d6d66.html">Phone</a></td><td class="cell-&lt;?3y">-$263.00</td><td class="cell-|LXa"></td></tr><tr id="29f73d17-866c-4574-9a7e-bfb2a91962dc"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Trash%2029f73d17866c45749a7ebfb2a91962dc.html">Trash</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="5129c8f6-7c03-4522-8d81-9c39b9504a27"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Cable%205129c8f67c0345228d819c39b9504a27.html">Cable</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="2bd230ec-92b2-4fd1-8787-9ad83416d8a0"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Cell%20Phone%202bd230ec92b24fd187879ad83416d8a0.html">Cell Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="77ce358a-3fca-431d-b7da-6829fd3f46e6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Groceries%2077ce358a3fca431db7da6829fd3f46e6.html">Groceries</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="42111a6b-5d02-4f5c-83d8-e396a707423b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Entertainment%2042111a6b5d024f5c83d8e396a707423b.html">Entertainment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a4234c25-c3ae-4dac-9e2b-4438f585e703"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Charity%20a4234c25c3ae4dac9e2b4438f585e703.html">Charity</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="d2c88427-cefe-4e69-af6f-97092f2a3707"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Fuel%20d2c88427cefe4e69af6f97092f2a3707.html">Fuel</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4a086007-0c0c-4035-ad32-1f4ed08590a4"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Car%20Insurance%204a0860070c0c4035ad321f4ed08590a4.html">Car Insurance</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="63f33854-7a82-4ed6-a926-8e5bd3744647"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Car%20Payment%2063f338547a824ed6a9268e5bd3744647.html">Car Payment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a1a70dc8-95e3-479f-a7cf-16c8c4cac131"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Credit%20Cards%20Debt%20a1a70dc895e3479fa7cf16c8c4cac131.html">Credit Cards / Debt</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4be40520-4dac-4465-b703-3fd70a6eea08"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Loans%204be405204dac4465b7033fd70a6eea08.html">Loans</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="699b3bc1-f02f-4a30-9067-21d7ad943161"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Child%20Support%20699b3bc1f02f4a30906721d7ad943161.html">Child Support</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="2e272cd1-e811-4191-8d4c-977261eba447"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Clothing%202e272cd1e81141918d4c977261eba447.html">Clothing</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="9be37873-a3e4-4366-8afa-aa19cda49946"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Untitled%209be37873a3e443668afaaa19cda49946.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="bff8449e-d417-4d0f-92c5-4c76e9ca705f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/SAVINGS%20bff8449ed4174d0f92c54c76e9ca705f.html">SAVINGS</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4dc98e5c-8e54-4f08-8cad-711fffbbec5f"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Retirement%204dc98e5c8e544f088cad711fffbbec5f.html">Retirement</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="d8662427-13a8-4a9f-8937-787551864464"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/College%20d866242713a84a9f8937787551864464.html">College</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="0c4c44c7-14bb-460f-a9f7-a83509e04f61"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Basic%200c4c44c714bb460fa9f7a83509e04f61.html">Basic</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="10b65517-97b0-41ee-9815-696fad734a3a"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20November%2083228984a8404b7eaca83401bda51694/Other%2010b6551797b041ee9815696fad734a3a.html">Other</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr></tbody></table></div></details></li></ul><ul id="5d5ca64e-3645-4ce6-81c3-7f84b5d50666" class="block-color-purple_background toggle"><li><details open=""><summary><strong>December</strong></summary><div id="d25850bc-7def-4895-8e5a-b98cdf505b7b" class="collection-content"><h4 class="collection-title">Budget</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Title</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Budget</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Notes</th></tr></thead><tbody><tr id="a42c340c-3326-415e-81d1-3f76a4dee0ed"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/INCOME%20a42c340c3326415e81d13f76a4dee0ed.html">INCOME</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="2a2348f9-bf6c-4e01-bb64-c50407fa6d76"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Income%20Total%202a2348f9bf6c4e01bb64c50407fa6d76.html">Income Total</a></td><td class="cell-&lt;?3y">$1,792.00</td><td class="cell-|LXa"></td></tr><tr id="6914325f-ebb4-407a-8ae3-677f8679cde5"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Other%20Income%206914325febb4407a8ae3677f8679cde5.html">Other Income</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="935f00e6-1019-49e5-80f9-62ca285999da"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Untitled%20935f00e6101949e580f962ca285999da.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="ae718700-dc3c-4a1b-b8c2-6da443ee0cbb"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/EXPENSES%20ae718700dc3c4a1bb8c26da443ee0cbb.html">EXPENSES</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="399debd3-e1ee-4aec-86a5-c23d3e3d74a5"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Mortgage%20Rent%20399debd3e1ee4aec86a5c23d3e3d74a5.html">Mortgage / Rent</a></td><td class="cell-&lt;?3y">-$1,200.00</td><td class="cell-|LXa"></td></tr><tr id="d7eb648e-f3e0-4726-b778-bcc00513b59c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Household%20Maintenance%20d7eb648ef3e04726b778bcc00513b59c.html">Household Maintenance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="6d1fc850-9073-44d5-98e4-5ea3330d6724"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Taxes%206d1fc850907344d598e45ea3330d6724.html">Taxes</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="2157d687-6ca4-4b84-bbcc-b8ce7b11eb5d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Insurance%202157d6876ca44b84bbccb8ce7b11eb5d.html">Insurance</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="fe3fe019-4b09-4eb4-8dd2-642115e49db0"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Electricity%20fe3fe0194b094eb48dd2642115e49db0.html">Electricity</a></td><td class="cell-&lt;?3y">-$134.00</td><td class="cell-|LXa"></td></tr><tr id="e0b396ae-9d99-4455-911b-a368a990da17"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Water%20e0b396ae9d994455911ba368a990da17.html">Water</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="7ab75069-f6d7-4813-8dcb-c1e420e0a1f9"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Sewage%207ab75069f6d748138dcbc1e420e0a1f9.html">Sewage</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f9aa53ca-a603-4e01-9110-9c0e2dc6ffe8"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Gas%20f9aa53caa6034e0191109c0e2dc6ffe8.html">Gas</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="dc1a187e-e277-46c2-9c99-5cf9d673fcc2"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Phone%20dc1a187ee27746c29c995cf9d673fcc2.html">Phone</a></td><td class="cell-&lt;?3y">-$263.00</td><td class="cell-|LXa"></td></tr><tr id="2a2cec30-9252-44f2-a45c-02f7812bb2a7"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Trash%202a2cec30925244f2a45c02f7812bb2a7.html">Trash</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="9895a1a1-8274-425b-b6d9-d6af6d7af43b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Cable%209895a1a18274425bb6d9d6af6d7af43b.html">Cable</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="5f41cfc8-3473-4123-ada1-7f8c836f5b77"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Cell%20Phone%205f41cfc834734123ada17f8c836f5b77.html">Cell Phone</a></td><td class="cell-&lt;?3y">$0.00</td><td class="cell-|LXa"></td></tr><tr id="27cfc3e8-755c-4b47-86fc-d365284b57e2"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Groceries%2027cfc3e8755c4b4786fcd365284b57e2.html">Groceries</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="fcfd00d1-fe41-4360-91e8-65ccefc8c96c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Entertainment%20fcfd00d1fe41436091e865ccefc8c96c.html">Entertainment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="f616fc77-5a88-4183-8313-c4e0423e55a6"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Charity%20f616fc775a8841838313c4e0423e55a6.html">Charity</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="b0d36546-5387-4cdf-af62-71ccfd080eeb"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Fuel%20b0d3654653874cdfaf6271ccfd080eeb.html">Fuel</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="2007f308-da74-4552-a398-03d9d01b867b"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Car%20Insurance%202007f308da744552a39803d9d01b867b.html">Car Insurance</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="10d4989c-0e61-4807-b9db-0b91701a5331"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Car%20Payment%2010d4989c0e614807b9db0b91701a5331.html">Car Payment</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="263df6b2-0f9c-4366-905a-cfa1d452a975"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Credit%20Cards%20Debt%20263df6b20f9c4366905acfa1d452a975.html">Credit Cards / Debt</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a8552e11-3643-4d76-8b52-1a5c4912c20c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Loans%20a8552e1136434d768b521a5c4912c20c.html">Loans</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="afacc438-c953-4a06-97d8-c25596699805"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Child%20Support%20afacc438c9534a0697d8c25596699805.html">Child Support</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="74618c03-a33b-4aa7-b289-f8b71e3c936d"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Clothing%2074618c03a33b4aa7b289f8b71e3c936d.html">Clothing</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="9f1c7f8a-a3e2-4176-80c5-1b5777388a38"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Untitled%209f1c7f8aa3e2417680c51b5777388a38.html">Untitled</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="d613c7d2-5205-46b0-9aa0-8d6b515c24ed"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/SAVINGS%20d613c7d2520546b09aa08d6b515c24ed.html">SAVINGS</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="b9859982-6368-465f-bda2-7fb9b59421d1"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Retirement%20b98599826368465fbda27fb9b59421d1.html">Retirement</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="a5d0da00-795c-47b7-a7e8-1cbd2eefc4de"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/College%20a5d0da00795c47b7a7e81cbd2eefc4de.html">College</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="eb614c58-4d1d-4bb0-94f4-12097e970696"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Basic%20eb614c584d1d4bb094f412097e970696.html">Basic</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr><tr id="4d7f9b74-a359-4ca7-93bc-665f7a3fc40c"><td class="cell-title"><a href="Finances%200ee9073a74f149ff805761a4de18560b/Budget%20d25850bc7def48958e5ab98cdf505b7b/Other%204d7f9b74a3594ca793bc665f7a3fc40c.html">Other</a></td><td class="cell-&lt;?3y"></td><td class="cell-|LXa"></td></tr></tbody></table></div></details></li></ul><p id="052c1c68-e8bb-4792-b498-a34d8cdb05c9" class="">
+</p><p id="670375e9-0c85-49b1-8696-cc93778e4b30" class="">
+</p></div></article></body></html>

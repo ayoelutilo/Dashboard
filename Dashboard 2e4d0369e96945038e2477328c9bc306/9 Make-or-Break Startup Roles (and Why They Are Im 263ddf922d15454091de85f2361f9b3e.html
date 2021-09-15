@@ -1,0 +1,903 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>9 Make-or-Break Startup Roles (and
+Why They Are Important)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="263ddf92-2d15-4540-91de-85f2361f9b3e" class="page sans"><header><h1 class="page-title">9 Make-or-Break Startup Roles (and
+Why They Are Important)</h1></header><div class="page-body"><p id="862c8706-3d6e-4a3d-8f2b-86ddcc81fb72" class="block-color-gray"><a></a></p><p id="6e15b27c-e3c9-40dc-a3c6-bd7aabbc0268" class="">
+</p><figure id="335dd1cc-02f7-406f-81e6-61c9414640f8"><div class="source"><a href="https://www.notion.so/0d9e77c5f85549698f6cc4cc5426d0b1">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0d9e77c5-f855-4969-8f6c-c4cc5426d0b1/PDF文档.pdf</a></div></figure><p id="92eff37a-5946-4a3e-aafe-f1130bb83229" class="">
+</p><p id="addfdb5b-212d-4ded-b6e3-81fc4d70bddc" class="">Think having a killer business idea and some funding is all you need
+for a successful startup, right?
+Wrong.
+75% of startups fail. And one of the main reasons is not having the
+right team in place to make the company successful:
+Image source
+Hiring qualified people for your startup isn&#x27;t enough, either. 65% of
+startups fail due to management issues. So, when you&#x27;re building a
+startup, it&#x27;s about hiring the right people for the right positions—
+not just those who look good on paper.
+So, what startup roles are essential for success? We&#x27;re going to take
+a look at nine essential roles in a startup company, and what it
+takes to make each of them successful.
+THE ROLES IN A STARTUP THAT MATTER
+How do you hire the right people for your startup and build a team
+that works, instead of one that sinks it?
+According to a Harvard Business Review study, experience alone is
+not enough to make a new team thrive.
+&quot;While experience broadens the teams&#x27; resource pool, helps people
+identify opportunities, and is positively related to team
+effectiveness, a team also needs soft skills to truly thrive,&quot; the study
+found.
+So, hiring the right people is about making sure they&#x27;re a good fit
+on paper, and in person. What&#x27;s also essential is a shared
+entrepreneurial passion and strategic vision to push a startup
+through the valley of death and into hockey stick growth.
+Let&#x27;s look at the nine roles that can make (or break) a startup&#x27;s
+success.</p><h1 id="cb9220b3-4ac2-4ebb-94be-890cd240ebe0" class="">1: CEO - visionary</h1><p id="6b465994-4d29-4608-8628-54854fedcf40" class="">
+The chief executive officer (CEO) of a startup is often referred to as
+the visionary. The leader of the pack. The decision maker.
+Their talent lies in dreaming big and being passionate about what
+the company could achieve in the future. But that doesn&#x27;t mean a
+CEO is paid more than the rest of the team, and they don&#x27;t hold
+more power.
+Image source
+However, there are a couple of core skills a startup CEO must have
+in their toolkit.
+A vision
+Kind of obvious from the &quot;visionary&quot; label. A CEOs vision needs to
+seep into the foundations of a startup. They need to be constantly
+looking for opportunities for their product in the market, their
+customers, and find it a place in their chosen industry. 44% of
+startups fail because there isn&#x27;t a market need for their product, so
+finding a pain point (and fixing it) is a crucial part of a CEOs job.
+Being a jack of all trades
+A startup, especially in its early stages, can&#x27;t afford to hire
+consultants and specialists to help make their vision become a
+reality. That&#x27;s why a CEO needs to be a jack of all trades. They need
+to be good at wearing several hats and solving a lot of different
+problems.
+Once they fix a problem or tick an item off a to-do-list, CEOs are
+always asking, what&#x27;s next? There&#x27;s no room for the phrase &quot;that&#x27;s
+not my job&quot; in the CEO role. Instead, they&#x27;re always thinking
+strategically about what they can do to push the company forward.
+And last but not least, they&#x27;re a leader.
+&quot;A good CEO is constantly questioning whether the right people
+are in the right places,&quot; says Founder/CEO of Brainscape, Andrew
+Cohen.
+&quot;Do any roles need to be re-organized? Are any bad apples
+affecting the performance of the rest of the team? Do people like
+their jobs? Do we need to have a corporate team-building retreat at
+a ropes course? Do we need to create any new vacancies for unmet
+leadership needs?
+&quot;Continually optimizing for team fit is a difficult activity, but it pays
+off exponentially as you put the right people in the right places.&quot;
+If a CEO leads from the front, the rest of the team will follow.
+Core responsibilities of a startup CEO:
+• Setting strategy and direction
+• Creating, living and breathing the startup&#x27;s culture, values, and
+behavior
+• Hiring and leading the company&#x27;s executive team
+• Implementing short and long term plans
+• Making important managerial and operational decisions
+• Focusing on the needs of everybody from investors to
+employees, customers, and the board of directors</p><h1 id="aa819674-695d-4575-971a-46485fcf7c04" class="">2: CTO - innovator</h1><p id="9101a313-122e-47fb-895d-59f3eac3e953" class="">
+The role of a chief technology officer (CTO) isn&#x27;t only about coding
+and development.
+A startup CTO is a CEOs right hand and helps them fine-tune
+strategy, tactics, and business goals to push the company forward.
+In the first stages of the startup, the CTO will be hands-on in the
+IT/development side of the company, helping to invent the product
+before the company progresses out of its early-stages.
+Image source
+Let&#x27;s address the elephant in the room. Wouldn&#x27;t a CTO just be in
+charge of tech at a startup?
+Well, yes and no. While a CTO needs to lead the startup&#x27;s
+engineering team, it&#x27;s also their job to also focus on what the
+customer wants from the end product, and use that to increase the
+company&#x27;s revenue.
+In the early stages of a startup, a CTO must be willing to pull up
+their sleeves and do some heavy lifting to get a product or service
+off the ground. This means juggling different roles and being a
+master of all things when it comes to tech, including coding.
+Sergey Bushtruk has been the CTO of two startups and says the
+role needs a person who can solve anything quicker than anyone
+else.
+&quot;Coding is not the main function of a CTO, but he must know how
+to do that,&quot; he says.
+&quot;For example, if the deadline is on fire, a CTO can work side by side
+with his team and code or run tests if they require his help.&quot;
+Ultimately, it&#x27;s a CTOs tech skills that set them apart. If you&#x27;re
+looking at hiring a CTO who has stronger soft skills than their tech
+skills, they may be better suited to a project manager role.
+Core responsibilities of a startup CTO:
+• In the early stages, coding and developing the company&#x27;s
+product
+• Developing and fine-tuning the startup&#x27;s strategy for using
+tech resources
+• Making sure the tech team is hitting deadlines, and using their
+time productively and efficiently
+• Focusing on ways the backend team can increase product
+revenue
+• Developing and implementing product infrastructure</p><h1 id="1f7b5704-0420-4f02-8560-fe7444767b29" class="">3: Product - director</h1><p id="ec1ce099-953d-47f5-a948-5c8469ec4c4d" class="">
+A Product Manager lives and breathes the product a startup is
+creating. They&#x27;re in charge of directing who the product will be sold
+to and how it will be positioned to buyers.
+In simple terms, it&#x27;s their job to show a startup&#x27;s target audience
+that the product is valuable.
+In a startup&#x27;s early days, a product director will make sure the
+product is market ready and more importantly, that there&#x27;s a
+market need for it. They act as a bridge between the product and
+the customer, and develop non-technical aspects around the
+product like:
+• Product positioning (internal and external): They are
+responsible for creating the positioning of the product to the
+internal team and developing messages that will be used on
+target personas, as well as how it&#x27;s positioned to the public
+(what is it used for? What problem does it solve?)
+• Creating personas: User persona (who is going to use the
+product?) and buyer persona (If you are selling a product to a
+company, who is the person who will decide if they will buy it?)
+• Pricing: Create a pricing structure for the product based on
+value, market need, production cost and sales cost.
+A startup product manager is the middle-man to UX, tech, and
+business at a startup. Image source
+A product manager must also help the startup founders with
+strategy, along with ideation and features. Their role is to
+communicate to their product team the value of the product, as
+well as its intent, so the team is prepared for when the product is
+released. When things ramp up, the product manager will build a
+roadmap and prioritize what needs to get done to achieve the
+initiatives and strategic goals behind the product itself.
+As for the product&#x27;s features, the product manager will set the
+requirements for each feature and explore how they will benefit the
+user&#x27;s experience. This stage requires the product manager and the
+tech team to work together to make sure the backend of a product
+translates into a better experience for their customers. Otherwise, it
+will be a wasted effort for both teams.
+Core responsibilities of a startup Product Manager:
+• Know and predict what a customer needs through research
+• Build product marketing objectives and strategies
+• Create product lines and test ideas for market viability
+• Determine a product pricing strategy based on production
+costs, market demand and research
+• Create sales forecasts for each product and analyze them
+• Manage the company&#x27;s product team: planning, meetings,
+monitoring results, and organizing training</p><h1 id="221a9064-81b9-4015-a6f6-d3f1d78a8cc5" class="">4: Developer - builder</h1><p id="a186fb03-c047-498b-a065-cd97b9781cf3" class="">
+A developer&#x27;s job role in a startup is all about being curious with
+code, and a willingness to push boundaries to create a killer
+product.
+In the super early stages of a startup, the CTO might be responsible
+for the bulk of a product&#x27;s coding. But as the company grows,
+bringing in developers is unavoidable. Startup Cronofy wrote on
+Medium that working in a startup is probably the most exciting
+place to be a developer simply because developers can be the
+master of their own destiny.
+&quot;It&#x27;s also one of the toughest places as you will probably have very
+little safety net or support.
+&quot;Startup job roles often don&#x27;t cover the responsibilities of the job
+accurately, in many cases because they don&#x27;t know what&#x27;s needed
+until a particular idea or situation surfaces.&quot;
+A bulk of a developer&#x27;s time will be spent designing, coding,
+testing, and debugging software. They will also have to push to
+complete code developments so that products and features can be
+released to customers on time.
+Hiring the right developer isn&#x27;t all about their tech skills, though.
+They need to have strong communication skills, be able to work in a
+team environment, and an eye for detail so they can pick up on
+product problems.
+Great developers aren&#x27;t just great on paper. They need to truly
+integrate into a small team, be willing to problem solve and go
+beyond their job scope to get a product released on time.
+Core responsibilities of a startup Developer:
+• Code, design, test, and debug software
+• Review current systems
+• Work closely with the rest of the startup team including CTO,
+designers, and product manager to keep the product in line
+with the company&#x27;s strategy
+• Create and present ideas for improvements to software and
+systems (and include cost proposals with them)
+• Testing products and updates before they go live
+• Writing and preparing training manuals for customers
+• Maintaining and monitoring systems when products go live to
+minimize disruptions</p><h1 id="d2d25483-0e31-4e8d-afc5-1dd4a2f29ca4" class="">5: Operations - organizer</h1><p id="82fc5d4f-018c-43af-8b2f-d92c138506f7" class="">
+At an early stage startup, the Operations role is all about boosting
+team productivity to ensure a product idea becomes a reality as
+quickly as possible.
+Basically, an operations manager makes sure everyone is doing
+what they should be doing, and holds the startup together. It&#x27;s a
+broad role, and an operations manager needs to be flexible every
+day to problem solve and keep their team on track.
+Beyond supporting the team, an operations manager also helps
+with raising funds, market analysis, and product management.
+An operations manager makes sure each team in the startup are
+staying on track. Image source
+Once a startup has found its product-market fit, and it&#x27;s starting to
+find its groove, an operations manager switches responsibility from
+holding a startup together to keeping it on track.
+The role will move onto organizing the startup&#x27;s operational
+systems, processes and policies. The operations manager will also
+keep a close eye on the productivity and effectiveness of other inhouse teams like finance, HR and tech (when the company is big
+enough to hire them, of course). They will also build out a strategy
+that coordinates the communication between departments, so it
+functions easier when it&#x27;s time to scale.
+Core responsibilities of a startup Operations Manager:
+• Structure and overall processes at the company
+• Planning and reviewing logistics, HR, and overall service
+• Contingency management
+• Execution of jobs/tasks (anything from creating policies to
+making sure HR are paying people on time)</p><h1 id="c1445d78-b4d0-4c2a-b1ff-7cc2fe1c6075" class="">6: CMO - marketer</h1><p id="4bc74c89-b8b0-4546-a329-c93938d8a44b" class="">
+In a startup, the importance of a Chief Marketing Officer (CMO) is
+often overlooked, which can be a massive mistake for a company
+down the line.
+A CMO is responsible for marketing and driving demand and
+growth of a company&#x27;s product, and they&#x27;re held accountable for
+their successes (and failures). They are responsible for creating and
+building the startup&#x27;s customer base, bringing in revenue, and
+most importantly, making the company profitable.
+If that&#x27;s not enough responsibility, in early stage startups, the CMO
+is also the driving force behind engagement, retention, creative
+and brand strategies, along with all marketing communications.
+The role of a startup CMO involves a lot of moving parts. Image
+source
+Mike Grandinetti has been a CMO at eight startups. He says
+startups (especially those in tech) typically operate with just an idea
+and lack the essential marketing assets needed to run a successful
+business: strong brand identity, healthy customer roster and
+established references.
+&quot;There is also the obvious financial obstacle of a limited marketing
+budget that hinders immediate growth if creative thinking and
+resourcefulness are not within the team&#x27;s grasp,&quot; he says.
+&quot;This is especially challenging for companies with customer
+functions where failure is simply not an option.&quot;
+And that&#x27;s why having the right CMO can quite literally make or
+break your startup. A typical CMO will cost a startup $250k+ base
+salary (not to mention a bonus + .50%-1.25% equity). So hiring the
+right CMO is crucial to the company&#x27;s finances as well.
+Core responsibilities of a startup CMO:
+• User acquisition, lead generation, and retention/engagement
+• All marketing communications
+• Brand positioning/identity
+• Research and analytics
+• Product marketing and positioning</p><h1 id="9e4bbada-b756-42b5-bf73-093c381a020c" class="">7: CFO - money manager</h1><p id="ccc8aabe-73fd-4f6b-b767-e9a7d9db73cc" class="">
+Whether or not a Chief Financial Officer (CFO) is needed in an early
+stage startup is a hotly contested topic.
+How hard can it be to manage a startup&#x27;s finances, right?
+The truth is, the role of a CFO goes well beyond just counting cash.
+They&#x27;re also responsible for the company&#x27;s growth, forming new
+relationships with companies, and creating financial processes and
+reporting requirements that can be used when the company
+scales.
+The right CFO can take a deep dive into a startup&#x27;s financial
+capabilities. They help a startup to optimize the cash they already
+have, and build a plan for when the company is ready to scale.</p></div></article></body></html>

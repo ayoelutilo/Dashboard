@@ -1,0 +1,636 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Planner</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="25f5c902-d95b-4adb-a8cb-9e79c160bbc1" class="page sans"><header><img class="page-cover-image" src="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/cameron-ballard-550601-unsplash.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">✍🏾</span></div><h1 class="page-title">Planner</h1></header><div class="page-body"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>﻿Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Category</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Priority</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Topic/Day</th></tr></thead><tbody><tr id="8395683b-94b9-4889-9cdb-17c799934e8c"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Cakeazy%208395683b94b948899cdb17c799934e8c.html"><span class="icon">🎂</span>Cakeazy</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="99213bb9-ef9a-431e-a357-c37ec244ce8f"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Marshmallow%20studio%20website%2099213bb9ef9a431ea357c37ec244ce8f.html">Marshmallow.studio website</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="c040b007-fe6b-4f00-aa28-5f3c574d7443"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Team%20building%20c040b007fe6b4f00aa285f3c574d7443.html">Team building </a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="2d5a055d-99e8-4ec2-bec4-5b5319ae6830"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/October%20Vancouver%20Vacation%202d5a055d99e84ec2bec45b5319ae6830.html"><span class="icon">🛫</span>October Vancouver  Vacation</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="57847a8f-ca1c-4f1c-89b9-3498e60eb162"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Great%20new%20business%20idea%20)%2057847a8fca1c4f1c89b93498e60eb162.html"><span class="icon">💡</span>Great new business idea :)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="2375591d-6129-4334-8dfe-7277856a20e3"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Marshmallow%20Studios%202375591d612943348dfe7277856a20e3.html"><span class="icon">🥊</span>Marshmallow Studios</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-purple">Projects</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="5cf234f4-4819-4b18-b950-a96eee0a8751"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Review%20business-related%20finances%205cf234f448194b18b950a96eee0a8751.html">Review business-related finances</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="bac65233-5575-48fe-8113-ec88dbc33458"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Learning%20&amp;%20training%20(directly%20related%20to%20my%20curren%20bac65233557548fe8113ec88dbc33458.html">Learning &amp; training (directly related to my current projects and clients)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="dcd36ce8-a5b1-4bed-a761-301bc28db085"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20work-related%20tasks%20dcd36ce8a5b14beda761301bc28db085.html">Take care of time-sensitive work-related tasks</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="34ae6b0d-9afd-4b7c-9125-99305e40d110"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%20(landlord,%20municipal%20services,%2034ae6b0d9afd4b7c912599305e40d110.html">Work through emails (landlord, municipal services, internet provider, etc.)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Private Paperwork (Tue)</span></td></tr><tr id="38b17743-24ec-4b1f-afd3-5444612c0728"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%2038b1774324ec4b1fafd35444612c0728.html">Work through emails</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="731fa145-4821-42e5-af79-c8068b829b43"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%20from%20clients%20and%20companies%20731fa145482142e5af79c8068b829b43.html">Work through emails from clients and companies</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="b295e157-c40d-439c-9774-a519a183eb58"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Invoicing%20b295e157c40d439c9774a519a183eb58.html">Invoicing</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="23b7b856-ade9-4d3b-82da-270cd9da12ff"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%20from%20friends%20&amp;%20family%2023b7b856ade94d3b82da270cd9da12ff.html">Work through emails from friends &amp; family</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="355be250-2c4e-45f1-9762-71d2facde744"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20business-related%20admin%20emails%20355be2502c4e45f1976271d2facde744.html">Work through business-related admin emails</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="93d8749b-0e50-4715-a2b6-90145c184176"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Plan%20upcoming%20purchases%20(for%20business)%2093d8749b0e504715a2b690145c184176.html">Plan upcoming purchases (for business)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="a36f29a8-d73e-4ee4-a4ad-e94b254ef8ef"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Weekly%20Review%20a36f29a8d73e4ee4a4ade94b254ef8ef.html">Weekly Review</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="eb568ee9-18a6-469c-a3ec-efb758f69513"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%20(e%20g%20order%20confirmations%20from%20%20eb568ee918a6469ca3ecefb758f69513.html">Work through emails (e.g. order confirmations from online shops)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-pink">Chores &amp; Errands (Thu)</span></td></tr><tr id="efd2ed49-52c4-494d-bd46-2badd5e0389d"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Work%20through%20emails%20regarding%20new%20opportunities%20efd2ed4952c4494dbd462badd5e0389d.html">Work through emails regarding new opportunities</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="191850d8-6fce-48ce-b766-946da2d8f35c"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20191850d86fce48ceb766946da2d8f35c.html">Take care of time-sensitive tasks</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Private Paperwork (Tue)</span></td></tr><tr id="27a264fd-d201-4546-b6e2-00c87bed9cdb"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Prepare%20annual%20tax%20return%2027a264fdd2014546b6e200c87bed9cdb.html">Prepare annual tax return</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="2d8551df-8d38-42da-ae07-4fb315ff9bfd"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20regarding%20new%20op%202d8551df8d3842daae074fb315ff9bfd.html">Take care of time-sensitive tasks regarding new opportunities (e.g. planning networking events, business trips, etc.)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="dec029dd-ccf9-4fab-a27c-9ce003d363bd"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Clean%20bathroom%20dec029ddccf94faba27c9ce003d363bd.html">Clean bathroom</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-pink">Chores &amp; Errands (Thu)</span></td></tr><tr id="fe2745e3-0a76-4f37-8f2c-0dd355408892"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Time%20Off%20Planning%20fe2745e30a764f378f2c0dd355408892.html">Time Off Planning</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="7ebad1cd-8d8c-430d-b998-6627ae2b3017"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20(home,%20errands,%20%207ebad1cd8d8c430db9986627ae2b3017.html">Take care of time-sensitive tasks (home, errands, etc.)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-pink">Chores &amp; Errands (Thu)</span></td></tr><tr id="c88627a4-a8d9-4544-9d7c-9b7b9523ef0a"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20(invoices,%20accou%20c88627a4a8d945449d7c9b7b9523ef0a.html">Take care of time-sensitive tasks (invoices, accounting, etc.)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">Accounting &amp; Admin Stuff (Wed)</span></td></tr><tr id="cad759cb-a455-45ae-91de-a6140a954d5c"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20cad759cba45545ae91dea6140a954d5c.html">Take care of time-sensitive tasks</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="f92c6ba5-0f91-48b9-9ba8-93dcaa2d3513"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Check%20private%20finances%20f92c6ba50f9148b99ba893dcaa2d3513.html">Check private finances</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Private Paperwork (Tue)</span></td></tr><tr id="e536048c-6eb1-422c-ac29-d044a9ac8476"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Take%20care%20of%20time-sensitive%20tasks%20(regarding%20vacat%20e536048c6eb1422cac29d044a9ac8476.html">Take care of time-sensitive tasks (regarding vacation, weekend activities, etc.)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="b2d0f464-10f7-4e35-bbca-ca5eac04a6c2"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Review%20upcoming%20purchases%20(private)%20b2d0f46410f74e35bbcaca5eac04a6c2.html">Review upcoming purchases (private)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-pink">Chores &amp; Errands (Thu)</span></td></tr><tr id="d4af61da-fd92-495d-a92e-5c24276ea098"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Project%20Review%20&amp;%20Planning%20d4af61dafd92495da92e5c24276ea098.html">Project Review &amp; Planning</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-green">Recurring</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="a89a5ef5-713d-47b7-b69a-74280491233b"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Schedule%20screen%20free%20times%20a89a5ef5713d47b7b69a74280491233b.html">Schedule screen free times</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="30045c50-a51b-4adc-a47b-5ff86ff4bec8"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Watch%20the%20news%20read%20newspaper%2030045c50a51b4adca47b5ff86ff4bec8.html">Watch the news / read newspaper</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="7856f2ca-5514-4d62-99bc-c874e8658b50"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Read%20more%20books%207856f2ca55144d6299bcc874e8658b50.html">Read more books</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="155cfda9-b56d-4779-93ea-ac5f048513dc"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Yoga%20Practice%20155cfda9b56d477993eaac5f048513dc.html">Yoga Practice</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="299ebc84-fc5a-4bb5-8077-a92e149918f9"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Meditate%20299ebc84fc5a4bb58077a92e149918f9.html">Meditate</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="a11095ab-8cc8-41b9-affe-0c0c996c1a8c"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Find%20opportunities%20a11095ab8cc841b9affe0c0c996c1a8c.html">Find opportunities </a></td><td class="cell-\BjW"><span class="selected-value select-value-color-yellow">Habits</span></td><td class="cell-6[xP"></td><td class="cell-E}GS"></td></tr><tr id="edfb959f-f84f-4e83-9639-8174703f8ba1"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Notion%20-%20Organization%20edfb959ff84f4e8396398174703f8ba1.html">Notion - Organization</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-blue">One-Off</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="ea0237e9-b5c2-44ca-811a-1c36e366d512"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Plan%20meetup%20with%20other%20freelancers%20ea0237e9b5c244ca811a1c36e366d512.html">Plan meetup with other freelancers</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-blue">One-Off</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="06749a53-cf5e-46e1-a268-102b4821b231"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Check%20out%20secure%20storage%20systems%2006749a53cf5e46e1a268102b4821b231.html">Check out secure storage systems</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-blue">One-Off</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="f4786e6c-9851-49be-a865-1e5c8eb78548"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Private%20Reading%20List%20f4786e6c985149bea8651e5c8eb78548.html">Private Reading List</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="ca8aa5db-a518-466d-bd99-b388c58c2e73"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Notion%20Setup%20Inspiration%20ca8aa5dba518466dbd99b388c58c2e73.html">Notion Setup Inspiration</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="ff1cea6d-78c6-4189-8025-6b191a50ba25"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Clients%20&amp;%20Coworkers%20ff1cea6d78c6418980256b191a50ba25.html">Clients &amp; Coworkers</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-red">Project Planning &amp; Clients (Mon)</span></td></tr><tr id="2c2b8f1b-4635-4201-aa6f-c001e2cab06a"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Apps%20&amp;%20Websites%20for%20Traveling%202c2b8f1b46354201aa6fc001e2cab06a.html">Apps &amp; Websites for Traveling</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="762df11a-97df-4eec-aaa0-58d2a49836ac"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/YouTube%20Videos%20for%20Yoga%20&amp;%20Meditation%20762df11a97df4eecaaa058d2a49836ac.html">YouTube Videos for Yoga &amp; Meditation</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="63393998-e8da-4179-b8d1-dff2aebe8e54"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Restaurants%2063393998e8da4179b8d1dff2aebe8e54.html">Restaurants</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="e5669e58-e05c-4520-ab8f-9c5731a2fdfe"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Tools%20e5669e58e05c4520ab8f9c5731a2fdfe.html">Tools</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="19154d47-4f8e-40fb-9989-f032619313a8"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Internet%20Bookmarks%2019154d474f8e40fb9989f032619313a8.html">Internet Bookmarks</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="208360bf-0b62-4178-990e-a80d9c3710ef"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Checklist%20for%20Business%20Trips%20208360bf0b624178990ea80d9c3710ef.html">Checklist for Business Trips</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="4a8de5e6-2ac2-422f-a069-dda3e11b4941"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Contacts%204a8de5e62ac2422fa069dda3e11b4941.html">Contacts</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="e82f9fa0-4306-4cf0-bd17-826cb4ec73e6"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Reading%20List%20e82f9fa043064cf0bd17826cb4ec73e6.html">Reading List</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="4eaa9fde-ff86-412c-8b76-fe61fb68a8ad"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Movies%20&amp;%20Series%204eaa9fdeff86412c8b76fe61fb68a8ad.html">Movies &amp; Series</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-yellow">3</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="c89bc9f7-b867-4341-84f0-f098dd203430"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Cover%20Images%20(Unsplash)%20c89bc9f7b867434184f0f098dd203430.html">Cover Images (Unsplash)</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="a259a872-3330-4d9e-86d4-f19d1b53421b"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Shops%20a259a87233304d9e86d4f19d1b53421b.html">Shops</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-orange">2</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="859ca4b5-c1d4-46fc-a630-8d5cb2df6091"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Cooking%20Ideas%20859ca4b5c1d446fca6308d5cb2df6091.html">Cooking Ideas</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="5e2b109a-c38c-445e-a4f2-03b26593edd9"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Ideas%20for%20Vacation%20&amp;%20Weekends%205e2b109ac38c445ea4f203b26593edd9.html">Ideas for Vacation &amp; Weekends</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="4820069e-0c07-43c6-9671-96e9816846e2"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Interesting%20Companies%204820069e0c0743c6967196e9816846e2.html">Interesting Companies</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-blue">New Opportunities (Fri)</span></td></tr><tr id="adf3156c-99a1-4089-85f2-a2ecb116999f"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Frequently%20Used%20Emojis%20&amp;%20Symbols%20adf3156c99a1408985f2a2ecb116999f.html">Frequently Used Emojis &amp; Symbols</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-red">1</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="8d4db27f-eb12-4566-acd7-74d794d3315b"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Music%20I%20like%208d4db27feb124566acd774d794d3315b.html">Music I like</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="a0fa9a45-d108-47e2-b661-08b28edc8539"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Packing%20List%20Template%20a0fa9a45d10847e2b66108b28edc8539.html">Packing List Template</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="a36fa193-81af-49b2-b5ec-9bda1469ac44"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Icons%20a36fa19381af49b2b5ec9bda1469ac44.html">Icons</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-purple">Miscellaneous (Sun)</span></td></tr><tr id="9d31fef8-0f16-478b-b544-13da27ddb40f"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Entertainment%20Platforms%20&amp;%20Subscriptions%209d31fef80f16478bb54413da27ddb40f.html">Entertainment Platforms &amp; Subscriptions</a></td><td class="cell-\BjW"><span class="selected-value select-value-color-orange">Collections</span></td><td class="cell-6[xP"><span class="selected-value select-value-color-brown">4</span></td><td class="cell-E}GS"><span class="selected-value select-value-color-green">Hobbies &amp; Leisure Time (Sat)</span></td></tr><tr id="40bf9f61-61ef-4be9-852b-a1416774164b"><td class="cell-title"><a href="Planner%2025f5c902d95b4adba8cb9e79c160bbc1/Untitled%2040bf9f6161ef4be9852ba1416774164b.html">Untitled</a></td><td class="cell-\BjW"></td><td class="cell-6[xP"></td><td class="cell-E}GS"></td></tr></tbody></table></div></article></body></html>

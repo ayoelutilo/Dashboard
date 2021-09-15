@@ -1,0 +1,638 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Timeline</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11528bff-74a3-4494-8b94-09457a83dc49" class="page sans"><header><h1 class="page-title">Timeline</h1></header><div class="page-body"><p id="e2490753-0c8c-410d-b691-26f5a7c051bc" class="">
+</p><div id="d83295e1-d8ef-4d63-93d4-c662e9d0d6df" class="column-list"><div id="d8793d41-061d-4c04-b2d8-289ec352a8d9" style="width:33.33333333333333%" class="column"><p id="b53c8c42-7771-4128-989e-dd17dcfaabe0" class="block-color-yellow_background"><strong><strong>PREP</strong></strong></p><hr id="84941b8c-8e50-46fd-95c3-6b43f60faac7"/><ul id="2e07f3c6-55aa-46c8-94a0-65e78ddd45ab" class="toggle"><li><details open=""><summary><strong>Find your North Star</strong></summary><p id="95cc5aed-784f-4b41-9a0d-3d9126300603" class=""><em>Before running this play, you need to understand what your team&#x27;s &quot;north star&quot; is. Is it customer retention? Expansion into a new market? Website traffic from organic search? Without an understanding of the larger objective you&#x27;re working towards, this play is useless.</em></p></details></li></ul><p id="a2050144-56b6-411f-b2f3-89f348b1bc3d" class=""><strong>App Downloads from organic sources. </strong></p><ul id="a0e7b6d4-b558-411b-a80e-e863119a66b7" class="toggle"><li><details open=""><summary><strong>Choose a time horizon</strong></summary><p id="2184a018-c4b0-42a7-b8f7-428fe1b74cc7" class="">Are you looking out 18 months, or just until next sprint? Consider variables like customer expectations, market opportunities (or pressures), team size, etc., and choose your time frame accordingly.</p><p id="4ca52bfb-79e8-4ce4-97d4-b2cddd9ca556" class="">
+</p></details></li></ul><p id="73bbbe00-f301-4750-b77c-683c766d2d77" class=""><strong>18 months</strong></p></div><div id="4c60b95e-ae96-4439-8f54-355bc7d2ec8a" style="width:33.33333333333334%" class="column"><p id="de58b462-1b37-41b2-a885-50223081b15c" class=""><strong><strong>STEP 1</strong></strong></p><hr id="1c7f8376-3062-4344-96d9-ef5042b8d603"/><ul id="89731297-98ae-4afe-8daa-2c33bb9e6581" class="toggle"><li><details open=""><summary><strong>Set the stage (10 min)</strong></summary><p id="cc7cfaf8-8b12-46f4-a75c-f37cbf47f312" class="">Full-time project owners, this is your time to shine. Clarify the link between the project you&#x27;re embarking on and your team or department&#x27;s broader mission. Allow time for the group to discuss or ask questions about this. Don&#x27;t rush this part – it&#x27;s important that the entire team starts out on the same page.</p></details></li></ul><ul id="378f22ed-c267-443d-b150-c8f4f7a7d4eb" class="toggle"><li><details open=""><summary>Steps</summary><div id="e2a1b163-63af-4ec7-a89e-55168ad0e71d" class="collection-content"><h4 class="collection-title">Project Plan</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Assigned</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M7.77892,7.06304 L4.62218,11.2875 C4.58556,11.3416 4.55285,11.4392 4.5504,11.5052 C4.5504,11.7022 4.7047,11.8619 4.89562,11.8619 L11.1383,11.8619 C11.6139,11.8619 11.9996,12.2598 11.9996,12.7507 L11.9996,13.1111 C11.9996,13.602 11.6139,14 11.1383,14 L1.861927,14 C1.385853,14 1.00011061,13.602 1.00011061,13.1111 L1.00011061,12.6858 C0.99718092,12.4783 1.0523567,12.3098 1.176868,12.1466 L4.39269,7.79888 C4.74816,7.31841 4.74572,6.65139 4.38683,6.17354 L1.400013,2.19436 C1.27306,2.03028 1.216419,1.85993 1.219349,1.65006 L1.219349,0.888889 C1.219349,0.397968 1.605091,0 2.08117,0 L10.91906,0 C11.3946,0 11.7804,0.397968 11.7804,0.888889 L11.7804,1.24925 C11.7804,1.74017 11.3946,2.13814 10.91906,2.13814 L5.13634,2.13814 C4.94542,2.13814 4.79064,2.29801 4.79064,2.49522 C4.79308,2.56049 4.82482,2.65709 4.86095,2.71087 L7.78038,6.68628 C7.8297,6.74847 7.84435,6.7934 7.84142,6.87363 C7.84435,6.95493 7.82921,7.00048 7.77892,7.06304 Z"></path></svg></span>Days Until Due</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>From</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Stage</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>To</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>link</th></tr></thead><tbody><tr id="3c2c339d-dd9b-4a34-ab18-91bff516d403"><td class="cell-title"><a href="https://www.notion.so/Announce-app-launch-3c2c339ddd9b4a34ab1891bff516d403">Announce app launch</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">102</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="af228c31-298d-4138-a4a1-552cf3859d1a"><td class="cell-title"><a href="https://www.notion.so/Market-the-app-in-other-communities-af228c31298d4138a4a1552cf3859d1a">Market the app in other communities</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">70</td><td class="cell-w`y="><time>@November 22, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 25, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="bbe2e20f-df40-43d5-b284-46d95ce0f6aa"><td class="cell-title"><a href="https://www.notion.so/App-development-bbe2e20fdf4043d5b28446d95ce0f6aa">App development</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">96</td><td class="cell-w`y="><time>@September 21, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Build-the-app-2c10df8bb96f4c0bbe8ef6b5d7138c5e">Build the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 21, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="f8ee48dd-a3ee-4131-b4b2-f54e3c7bf1ba"><td class="cell-title"><a href="https://www.notion.so/Brainstorm-ideas-f8ee48dda3ee4131b4b2f54e3c7bf1ba">Brainstorm ideas</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-19</td><td class="cell-w`y="><time>@August 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Generate-an-app-idea-b24ed144698742ceb70cbc86202564b5">Generate an app idea</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@August 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="28c03e6f-c445-4de5-a7c3-567390219089"><td class="cell-title"><a href="https://www.notion.so/Check-app-stores-for-existing-apps-to-remix-or-improve-28c03e6fc4454de5a7c3567390219089">Check app stores for existing apps to remix or improve</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 1, 2021 2:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Generate-an-app-idea-b24ed144698742ceb70cbc86202564b5">Generate an app idea</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 1, 2021 2:45 PM</time></td><td class="cell-{QQS"></td></tr><tr id="599e0259-6e65-44d6-8dce-30ccf0b7fd7d"><td class="cell-title"><a href="https://www.notion.so/Collect-user-feedback-599e02596e6544d68dce30ccf0b7fd7d">Collect user feedback</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">134</td><td class="cell-w`y="><time>@January 10, 2022</time></td><td class="cell-S@li"><a href="https://www.notion.so/Improve-the-app-based-on-user-feedback-63b1c657bb2d4fcf8d130cb6f50312ee">Improve the app based on user feedback</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@January 28, 2022</time></td><td class="cell-{QQS"></td></tr><tr id="02d35238-dba3-4730-917c-3dbb214a40e4"><td class="cell-title"><a href="https://www.notion.so/Prepare-App-Store-submission-02d35238dba34730917c3dbb214a40e4">Prepare App Store submission</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">76</td><td class="cell-w`y="><time>@November 29, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 1, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4254fbb2-9266-4b24-b7e1-189c0166376f"><td class="cell-title"><a href="https://www.notion.so/Create-landing-page-4254fbb292664b24b7e1189c0166376f">Create landing page</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="7977397f-6925-41b2-a4c5-895f799a0774"><td class="cell-title"><a href="https://www.notion.so/Create-media-kit-7977397f692541b2a4c5895f799a0774">Create media kit</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 8, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="c2f7dc53-378b-43a4-9457-788781248d89"><td class="cell-title"><a href="https://www.notion.so/Research-App-Store-optimisation-c2f7dc53378b43a49457788781248d89">Research App Store optimisation</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 12, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="f3bd35b1-dfbc-4e3f-b676-63adfc92b66e"><td class="cell-title"><a href="https://www.notion.so/Write-a-press-release-for-the-app-f3bd35b1dfbc4e3fb67663adfc92b66e">Write a press release for the app</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">15</td><td class="cell-w`y="><time>@October 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@October 1, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="adaaf6b1-132a-4889-8c38-18b6d19b42ab"><td class="cell-title"><a href="https://www.notion.so/Email-pre-launch-list-adaaf6b1132a48898c3818b6d19b42ab">Email pre-launch list</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">62</td><td class="cell-w`y="><time>@November 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 17, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="2f3c66c3-4b48-4f5e-879c-0c16206baed6"><td class="cell-title"><a href="https://www.notion.so/Pencil-sketches-of-the-UI-2f3c66c34b484f5e879c0c16206baed6">Pencil sketches of the UI</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-8</td><td class="cell-w`y="><time>@September 6, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 7, 2021 9:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="1358d1e9-f518-4d9c-a7e1-9e3965c178e7"><td class="cell-title"><a href="https://www.notion.so/Figma-designs-of-the-UI-1358d1e9f5184d9ca7e19e3965c178e7">Figma designs of the UI</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-4</td><td class="cell-w`y="><time>@September 8, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 10, 2021 11:59 PM</time></td><td class="cell-{QQS"></td></tr><tr id="e6e1207b-4b4a-4330-abbf-3b807aec70be"><td class="cell-title"><a href="https://www.notion.so/Create-prototype-e6e1207b4b4a4330abbf3b807aec70be">Create prototype</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">4</td><td class="cell-w`y="><time>@September 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 20, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="5fb8f25e-126e-43e8-9993-bd02e33a758c"><td class="cell-title"><a href="https://www.notion.so/Submit-app-to-be-featured-in-app-store-5fb8f25e126e43e89993bd02e33a758c">Submit app to be featured in app store</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">102</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="2b051b64-9f77-4430-923b-9453a9ee339c"><td class="cell-title"><a href="https://www.notion.so/Iterate-on-App-Store-Optimisation-2b051b649f774430923b9453a9ee339c">Iterate on App Store Optimisation</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">106</td><td class="cell-w`y="><time>@December 29, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 31, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4f69d3b3-9016-49f9-b631-cdfd2227833d"><td class="cell-title"><a href="https://www.notion.so/Influencer-marketing-campaign-4f69d3b3901649f9b631cdfd2227833d">Influencer marketing campaign</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">134</td><td class="cell-w`y="><time>@December 31, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@January 28, 2022</time></td><td class="cell-{QQS"></td></tr><tr id="b520a58f-6316-45a0-b0bf-d6e23da7332e"><td class="cell-title"><a href="https://www.notion.so/Design-feature-1-b520a58f631645a0b0bfd6e23da7332e">Design feature 1</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 3:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="baf4f946-4219-4733-a89b-bc9e9170fe53"><td class="cell-title"><a href="https://www.notion.so/Develop-elevator-pitch-baf4f94642194733a89bbc9e9170fe53">Develop elevator pitch</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-12</td><td class="cell-w`y="><time>@September 2, 2021 1:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 3, 2021 7:00 AM-8:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="366cde46-963d-4bc3-943a-3445b6cb027f"><td class="cell-title"><a href="https://www.notion.so/Final-UI-review-366cde46963d4bc3943a3445b6cb027f">Final UI review </a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">4</td><td class="cell-w`y="><time>@September 20, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Review-the-apps-user-interface-design-93c72535c29c4f7babd5cbeeb845a065">Review the apps user interface design</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 20, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4292a581-792d-47c7-9b1e-4f9a483abf4e"><td class="cell-title"><a href="https://www.notion.so/Submit-the-app-4292a581792d47c79b1e4f9a483abf4e">Submit the app</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">98</td><td class="cell-w`y="><time>@December 23, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 23, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="43ba2b03-7c75-4f52-aebd-fcf318c785a5"><td class="cell-title"><a href="https://www.notion.so/Set-up-waitlist-43ba2b037c754f52aebdfcf318c785a5">Set up waitlist</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">97</td><td class="cell-w`y="><time>@December 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 22, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="634c1b97-9089-4589-aae5-b729a05277df"><td class="cell-title"><a href="https://www.notion.so/Paid-marketing-campaign-634c1b9790894589aae5b729a05277df">Paid marketing campaign</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-314</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 5, 2020</time></td><td class="cell-{QQS"></td></tr><tr id="7709d218-a5be-461f-b793-df9de34fa032"><td class="cell-title"><a href="https://www.notion.so/Design-onboarding-screens-7709d218a5be461fb793df9de34fa032">Design onboarding screens</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">0</td><td class="cell-w`y="><time>@September 11, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-brown">Up Next</span></td><td class="cell-i\?I"><time>@September 15, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="ae50f170-e33a-4514-a789-1881faacd22f"><td class="cell-title"><a href="https://www.notion.so/Design-feature-2-ae50f170e33a4514a7891881faacd22f">Design feature 2</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 10:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 4:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="cac014ed-5086-4751-a32c-421626f3c5fd"><td class="cell-title"><a href="https://www.notion.so/Design-feature-3-cac014ed50864751a32c421626f3c5fd">Design feature 3</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 11:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 5:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="ed42f43e-6b74-43c0-974c-681370f85e24"><td class="cell-title"><a href="https://www.notion.so/Review-10-most-similar-apps-ed42f43e6b7443c0974c681370f85e24">Review 10 most similar apps</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 1, 2021 1:15 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 1, 2021 2:30 PM</time></td><td class="cell-{QQS"></td></tr><tr id="c8497e40-3865-4577-98ce-3694c47f2e2b"><td class="cell-title"><a href="https://www.notion.so/Validate-idea-c8497e403865457798ce3694c47f2e2b">Validate idea</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 2, 2021 12:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 2, 2021 12:00 PM-1:00 PM</time></td><td class="cell-{QQS"></td></tr><tr id="c30ee12e-c52d-42bc-be84-6a035f871f33"><td class="cell-title"><a href="https://www.notion.so/Make-notion-database-of-prospective-team-members-c30ee12ec52d42bcbe846a035f871f33">Make notion database of prospective team members</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">0</td><td class="cell-w`y="><time>@September 13, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Start-gathering-Development-Team-ef40cb41dcc8495bb064b9154cbb59d4">Start gathering Development Team</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 15, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="339ce4a6-5b55-4a44-9f5c-a05d378196a9"><td class="cell-title"><a href="https://www.notion.so/Reach-out-to-prospective-team-members-339ce4a65b554a449f5ca05d378196a9">Reach out to prospective team members </a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">1</td><td class="cell-w`y="><time>@September 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Start-gathering-Development-Team-ef40cb41dcc8495bb064b9154cbb59d4">Start gathering Development Team</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 17, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="e2ed9512-4166-45d1-a321-59c8b2316008"><td class="cell-title"><a href="https://www.notion.so/Work-on-project-timeline-e2ed9512416645d1a32159c8b2316008">Work on project timeline</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 2, 2021 11:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 2, 2021 12:00 PM</time></td><td class="cell-{QQS"></td></tr><tr id="40e8ade9-8481-4ba0-8c6e-404a4665153c"><td class="cell-title"><a href="https://www.notion.so/Break-40e8ade984814ba08c6e404a4665153c">Break</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 1:00 PM</time></td><td class="cell-S@li"></td><td class="cell-shmX"></td><td class="cell-i\?I"><time>@September 3, 2021 2:00 PM</time></td><td class="cell-{QQS"></td></tr><tr id="ed9e096b-4783-46e0-bffb-415d8061cc18"><td class="cell-title"><a href="https://www.notion.so/Break-ed9e096b478346e0bffb415d8061cc18">Break</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-12</td><td class="cell-w`y="><time>@September 3, 2021 11:00 AM</time></td><td class="cell-S@li"></td><td class="cell-shmX"></td><td class="cell-i\?I"><time>@September 3, 2021 11:15 AM</time></td><td class="cell-{QQS"></td></tr><tr id="7733cbf5-bacb-4218-bf90-3b79097f2b7a"><td class="cell-title"><a href="https://www.notion.so/Complete-Hub-s-project-planning-page-7733cbf5bacb4218bf903b79097f2b7a">Complete Hub&#x27;s project planning page</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 3:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-red">Delayed</span></td><td class="cell-i\?I"><time>@September 3, 2021 8:00 PM</time></td><td class="cell-{QQS"><a href="https://www.notion.so/ayodele/Hub-33eee59e8459405697f0b604039b62ad" class="url-value">https://www.notion.so/ayodele/Hub-33eee59e8459405697f0b604039b62ad</a></td></tr></tbody></table></div></details></li></ul></div><div id="b9b89d57-ec83-4ad4-9e4b-31b29751356c" style="width:33.33333333333333%" class="column"><p id="bfac49f3-feeb-409c-8b0d-9375fcef91b2" class=""><strong><strong>STEP 2</strong></strong></p><hr id="39020f5f-6358-46fb-8845-0e5a61a6eac5"/><ul id="93050f08-f63e-4e7c-8e9a-ae2c0f029b02" class="toggle"><li><details open=""><summary><strong>Brainstorm goals (15 min)</strong></summary><p id="ad5ddcde-b758-4c38-aef2-7697400d854c" class="">Now that everyone is anchored in the team&#x27;s greater purpose, it&#x27;s time for some mental exploration.</p><p id="5a3a3156-6fc6-458d-9ac9-463da8dc6a74" class="">Spend a few minutes individually brainstorming possible goals to pursue, writing each idea on a sticky note and posting them up at the front of the room. Nothing is off-limits here, but...</p><p id="d0a9717e-1e51-49ae-9a73-976da61b5b70" class="">Make sure the goals speak to outcomes, not output of effort. For example, &quot;Go to the gym 3 times a week&quot; speaks only to the output of effort. (And let&#x27;s be real: you could go to the gym 7 times a week and not see any changes if you&#x27;re also pigging out on ice cream each night.) On the other hand &quot;Feel rockin&#x27; in a swimsuit at Bondi Beach this summer&quot; focuses on an outcome – the thing you&#x27;re really after.</p><p id="f0934a22-25e0-4f4a-a3d9-49c561c53ea1" class="">And be mindful of pitching goals at the right level. Goals shouldn&#x27;t be so granular that they could be tracked with a single Jira issue. But neither should they be at the level of solving world peace (but tip-of-the-hat if you&#x27;re trying).</p><p id="d327b69b-ebc9-47ad-ac7c-6278b0b31685" class="">For more tips on goal-setting, check out <a href="https://en.wikipedia.org/wiki/SMART_criteria">S.M.A.R.T</a>.</p><p id="89f4f036-ada4-4dbf-90dc-8e18096960ab" class="">Allow time for each team member to present their ideas and encourage enough discussion to make sure you&#x27;ve got a solid understanding your options.</p><h3 id="f7ecf4ae-db34-4e96-b471-49769e8ae548" class=""><strong>PRO TIP</strong></h3><p id="16c1f7e4-e5e3-497e-a8ac-4690a22cee36" class="">Think back on lessons learned from past projects – bumps, scratches, warts, and all! Pull out notes from past <a href="https://www.atlassian.com/team-playbook/plays/retrospective">retrospectives</a> or <a href="https://www.atlassian.com/team-playbook/health-monitor">Health Monitor</a> sessions as you&#x27;re brainstorming.</p></details></li></ul><ul id="b4359da8-0d52-4f46-a253-4b52be7c7d7a" class="toggle"><li><details open=""><summary>Timeline</summary><div id="8361ad8d-ccab-4144-bf3f-6e0e2d52c87d" class="collection-content"><h4 class="collection-title">Stages</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M5.94578,14 C4.62416,14 3.38248,13.4963 2.44892,12.585 C1.514641,11.6736 1,10.4639 1,9.17405 C1.00086108,7.88562 1.514641,6.67434 2.44892,5.76378 L7.45612,0.985988 C8.80142,-0.327216 11.1777,-0.332396 12.5354,0.992848 C13.9369,2.36163 13.9369,4.58722 12.5354,5.95418 L8.03046,10.2414 C7.16278,11.0877 5.73682,11.0894 4.86024,10.2345 C3.98394,9.37789 3.98394,7.98769 4.86024,7.1327 L6.60422,5.4317 L7.87576,6.67196 L6.13177,8.37297 C6.01668,8.48539 6.00003,8.61545 6.00003,8.68335 C6.00003,8.75083 6.01668,8.88103 6.13177,8.99429 C6.36197,9.21689 6.53749,9.21689 6.76768,8.99429 L11.2707,4.70622 C11.9645,4.03016 11.9645,2.91757 11.2638,2.23311 C10.5843,1.57007 9.40045,1.57007 8.72077,2.23311 L3.71342,7.0109 C3.12602,7.58406 2.79837,8.35435 2.79837,9.17405 C2.79837,9.99459 3.12602,10.7654 3.72045,11.3446 C4.90947,12.5062 6.98195,12.5062 8.17096,11.3446 L10.41911,9.15165 L11.6906,10.3919 L9.4425,12.585 C8.50808,13.4963 7.2664,14 5.94578,14 Z"></path></svg></span>Artwork</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>From</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M7.77892,7.06304 L4.62218,11.2875 C4.58556,11.3416 4.55285,11.4392 4.5504,11.5052 C4.5504,11.7022 4.7047,11.8619 4.89562,11.8619 L11.1383,11.8619 C11.6139,11.8619 11.9996,12.2598 11.9996,12.7507 L11.9996,13.1111 C11.9996,13.602 11.6139,14 11.1383,14 L1.861927,14 C1.385853,14 1.00011061,13.602 1.00011061,13.1111 L1.00011061,12.6858 C0.99718092,12.4783 1.0523567,12.3098 1.176868,12.1466 L4.39269,7.79888 C4.74816,7.31841 4.74572,6.65139 4.38683,6.17354 L1.400013,2.19436 C1.27306,2.03028 1.216419,1.85993 1.219349,1.65006 L1.219349,0.888889 C1.219349,0.397968 1.605091,0 2.08117,0 L10.91906,0 C11.3946,0 11.7804,0.397968 11.7804,0.888889 L11.7804,1.24925 C11.7804,1.74017 11.3946,2.13814 10.91906,2.13814 L5.13634,2.13814 C4.94542,2.13814 4.79064,2.29801 4.79064,2.49522 C4.79308,2.56049 4.82482,2.65709 4.86095,2.71087 L7.78038,6.68628 C7.8297,6.74847 7.84435,6.7934 7.84142,6.87363 C7.84435,6.95493 7.82921,7.00048 7.77892,7.06304 Z"></path></svg></span>Stage Duration (Days)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Steps</th><th><span class="icon property-icon"><svg viewBox="0 0 18 18" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRollup"><path d="M17,15.6l-5.119-5.119C12.583,9.499,13,8.299,13,7c0-3.314-2.686-6-6-6S1,3.686,1,7s2.686,6,6,6 c1.299,0,2.499-0.417,3.481-1.119L15.6,17L17,15.6z M7,11c-2.209,0-4-1.791-4-4c0-2.209,1.791-4,4-4s4,1.791,4,4 C11,9.209,9.209,11,7,11z"></path></svg></span>Steps Status</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>To</th></tr></thead><tbody><tr id="4d46fe7c-9b36-4902-8d62-40c637d25fa2"><td class="cell-title"><a href="https://www.notion.so/New-Step-4d46fe7c9b3649028d6240c637d25fa2">New Step</a></td><td class="cell-U~s]"></td><td class="cell-jS=:"></td><td class="cell-^_`x">1</td><td class="cell-~[g@"></td><td class="cell-OOWp"></td><td class="cell-f]&lt;@"></td><td class="cell-=Ry&gt;"></td></tr><tr id="4ad7f5e0-d280-4499-9a20-38341222a420"><td class="cell-title"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/498d7daaa2b44fe5ab300f802398e361"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Design%20the%20apps%20user%20journeys%204ad7f5e0d28044999a2038341222a420/Design_the_apps_user_journeys.png" alt="Design the apps user journeys.png"/></a></span></td><td class="cell-jS=:"><time>@September 3, 2021 9:00 AM</time></td><td class="cell-^_`x">17</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Pencil-sketches-of-the-UI-2f3c66c34b484f5e879c0c16206baed6">Pencil sketches of the UI</a>, <a href="https://www.notion.so/Figma-designs-of-the-UI-1358d1e9f5184d9ca7e19e3965c178e7">Figma designs of the UI</a>, <a href="https://www.notion.so/Design-onboarding-screens-7709d218a5be461fb793df9de34fa032">Design onboarding screens</a>, <a href="https://www.notion.so/Create-prototype-e6e1207b4b4a4330abbf3b807aec70be">Create prototype</a></td><td class="cell-f]&lt;@">In Progress,In Progress,Up Next,Not Started</td><td class="cell-=Ry&gt;"><time>@September 19, 2021 11:59 PM</time></td></tr><tr id="b24ed144-6987-42ce-b70c-bc86202564b5"><td class="cell-title"><a href="https://www.notion.so/Generate-an-app-idea-b24ed144698742ceb70cbc86202564b5">Generate an app idea</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/2a47e93376e6409c95a9d4b3819b4a9a"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Generate%20an%20app%20idea%20b24ed144698742ceb70cbc86202564b5/Generate_An_App_Idea.png" alt="Generate An App Idea.png"/></a></span></td><td class="cell-jS=:"><time>@August 27, 2021</time></td><td class="cell-^_`x">1</td><td class="cell-~[g@"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Brainstorm-ideas-f8ee48dda3ee4131b4b2f54e3c7bf1ba">Brainstorm ideas</a>, <a href="https://www.notion.so/Check-app-stores-for-existing-apps-to-remix-or-improve-28c03e6fc4454de5a7c3567390219089">Check app stores for existing apps to remix or improve</a></td><td class="cell-f]&lt;@">Complete,Complete</td><td class="cell-=Ry&gt;"><time>@August 27, 2021</time></td></tr><tr id="7de7a63a-04dc-4449-ba77-bdd97a7e1398"><td class="cell-title"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/575cd102ecba4bfa95ef60d627f313f0"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Market%20the%20app%207de7a63a04dc4449ba77bdd97a7e1398/Put_together_a_marketing_plan.png" alt="Put together a marketing plan.png"/></a></span></td><td class="cell-jS=:"><time>@December 27, 2021</time></td><td class="cell-^_`x">78</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Submit-app-to-be-featured-in-app-store-5fb8f25e126e43e89993bd02e33a758c">Submit app to be featured in app store</a>, <a href="https://www.notion.so/Iterate-on-App-Store-Optimisation-2b051b649f774430923b9453a9ee339c">Iterate on App Store Optimisation</a>, <a href="https://www.notion.so/Influencer-marketing-campaign-4f69d3b3901649f9b631cdfd2227833d">Influencer marketing campaign</a></td><td class="cell-f]&lt;@">Not Started,Not Started,Not Started</td><td class="cell-=Ry&gt;"><time>@March 14, 2022</time></td></tr><tr id="63b1c657-bb2d-4fcf-8d13-0cb6f50312ee"><td class="cell-title"><a href="https://www.notion.so/Improve-the-app-based-on-user-feedback-63b1c657bb2d4fcf8d130cb6f50312ee">Improve the app based on user feedback</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/d10510f7501d4a7db0ba3a593d6a678b"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Improve%20the%20app%20based%20on%20user%20feedback%2063b1c657bb2d4fcf8d130cb6f50312ee/Improve_the_app_based_on_user_feedback.png" alt="Improve the app based on user feedback.png"/></a></span></td><td class="cell-jS=:"><time>@January 31, 2022</time></td><td class="cell-^_`x">29</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Collect-user-feedback-599e02596e6544d68dce30ccf0b7fd7d">Collect user feedback</a></td><td class="cell-f]&lt;@">Not Started</td><td class="cell-=Ry&gt;"><time>@February 28, 2022</time></td></tr><tr id="bb54e83d-e148-4319-bf00-56d4a0dbf960"><td class="cell-title"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/8023c7990b034aa8a6223e9576b2bb65"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Put%20together%20the%20marketing%20plan%20bb54e83de1484319bf0056d4a0dbf960/Put_together_a_marketing_plan-3.png" alt="Put together a marketing plan-3.png"/></a></span></td><td class="cell-jS=:"><time>@November 1, 2021</time></td><td class="cell-^_`x">57</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Create-landing-page-4254fbb292664b24b7e1189c0166376f">Create landing page</a>, <a href="https://www.notion.so/Set-up-waitlist-43ba2b037c754f52aebdfcf318c785a5">Set up waitlist</a>, <a href="https://www.notion.so/Create-media-kit-7977397f692541b2a4c5895f799a0774">Create media kit</a>, <a href="https://www.notion.so/Research-App-Store-optimisation-c2f7dc53378b43a49457788781248d89">Research App Store optimisation</a>, <a href="https://www.notion.so/Write-a-press-release-for-the-app-f3bd35b1dfbc4e3fb67663adfc92b66e">Write a press release for the app</a>, <a href="https://www.notion.so/Paid-marketing-campaign-634c1b9790894589aae5b729a05277df">Paid marketing campaign</a>, <a href="https://www.notion.so/Email-pre-launch-list-adaaf6b1132a48898c3818b6d19b42ab">Email pre-launch list</a>, <a href="https://www.notion.so/Market-the-app-in-other-communities-af228c31298d4138a4a1552cf3859d1a">Market the app in other communities</a></td><td class="cell-f]&lt;@">Not Started,Not Started,Not Started,Not Started,Not Started,Not Started,Not Started,Not Started</td><td class="cell-=Ry&gt;"><time>@December 27, 2021</time></td></tr><tr id="7ded5b2e-0fc7-4683-af3d-780993b72416"><td class="cell-title"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/96c85288831b4f5a8a56d1626022d1f0"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Carry%20out%20competitive%20market%20research%207ded5b2e0fc74683af3d780993b72416/Generate_An_App_Idea-4.png" alt="Generate An App Idea-4.png"/></a></span></td><td class="cell-jS=:"><time>@September 1, 2021</time></td><td class="cell-^_`x">1</td><td class="cell-~[g@"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Review-10-most-similar-apps-ed42f43e6b7443c0974c681370f85e24">Review 10 most similar apps</a>, <a href="https://www.notion.so/Develop-elevator-pitch-baf4f94642194733a89bbc9e9170fe53">Develop elevator pitch</a>, <a href="https://www.notion.so/Validate-idea-c8497e403865457798ce3694c47f2e2b">Validate idea</a>, <a href="https://www.notion.so/Work-on-project-timeline-e2ed9512416645d1a32159c8b2316008">Work on project timeline</a>, <a href="https://www.notion.so/Complete-Hub-s-project-planning-page-7733cbf5bacb4218bf903b79097f2b7a">Complete Hub&#x27;s project planning page</a></td><td class="cell-f]&lt;@">Complete,Complete,Complete,Complete,Delayed</td><td class="cell-=Ry&gt;"><time>@September 1, 2021 → September 2, 2021</time></td></tr><tr id="336728d1-5db9-4d73-9cc5-7cfa4b9bf3f6"><td class="cell-title"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/4c0f88b3024946a5a2524248d83f1a74"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Submit%20the%20app%20to%20the%20app%20stores%20336728d15db94d739cc57cfa4b9bf3f6/Put_together_a_marketing_plan-2.png" alt="Put together a marketing plan-2.png"/></a></span></td><td class="cell-jS=:"><time>@December 24, 2021</time></td><td class="cell-^_`x">4</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Prepare-App-Store-submission-02d35238dba34730917c3dbb214a40e4">Prepare App Store submission</a>, <a href="https://www.notion.so/Submit-the-app-4292a581792d47c79b1e4f9a483abf4e">Submit the app</a>, <a href="https://www.notion.so/Announce-app-launch-3c2c339ddd9b4a34ab1891bff516d403">Announce app launch</a></td><td class="cell-f]&lt;@">Not Started,Not Started,Not Started</td><td class="cell-=Ry&gt;"><time>@December 27, 2021</time></td></tr><tr id="93c72535-c29c-4f7b-abd5-cbeeb845a065"><td class="cell-title"><a href="https://www.notion.so/Review-the-apps-user-interface-design-93c72535c29c4f7babd5cbeeb845a065">Review the apps user interface design</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/0bab8a260621496b946d55d8d69e8655"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Review%20the%20apps%20user%20interface%20design%2093c72535c29c4f7babd5cbeeb845a065/Design_the_apps_user_interface.png" alt="Design the apps user interface.png"/></a></span></td><td class="cell-jS=:"><time>@September 20, 2021</time></td><td class="cell-^_`x">1</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Final-UI-review-366cde46963d4bc3943a3445b6cb027f">Final UI review </a></td><td class="cell-f]&lt;@">Not Started</td><td class="cell-=Ry&gt;"><time>@September 20, 2021</time></td></tr><tr id="2c10df8b-b96f-4c0b-be8e-f6b5d7138c5e"><td class="cell-title"><a href="https://www.notion.so/Build-the-app-2c10df8bb96f4c0bbe8ef6b5d7138c5e">Build the app</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/af909921e7fb4992be9cb37dedc68222"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Build%20the%20app%202c10df8bb96f4c0bbe8ef6b5d7138c5e/Build_the_app.png" alt="Build the app.png"/></a></span></td><td class="cell-jS=:"><time>@September 21, 2021</time></td><td class="cell-^_`x">92</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/App-development-bbe2e20fdf4043d5b28446d95ce0f6aa">App development</a></td><td class="cell-f]&lt;@">Not Started</td><td class="cell-=Ry&gt;"><time>@December 21, 2021</time></td></tr><tr id="5c0f9330-542e-4869-9882-a303fcea1e54"><td class="cell-title"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-U~s]"><span style="margin-right:6px"><a href="https://www.notion.so/3bfcc3f1a5194255b7a4c12ac48292c1"><img style="width:20px;max-height:24px" src="../../../../../Project%20H01%20Timeline%20Home%2053b7d6ff188444dcb5b3cca538c1e5f9/Stages%20c694c9a296f041cdb3f55b902074af0b/Choose%20the%20features%20for%20your%20app%205c0f9330542e48699882a303fcea1e54/Generate_An_App_Idea-3.png" alt="Generate An App Idea-3.png"/></a></span></td><td class="cell-jS=:"><time>@September 2, 2021</time></td><td class="cell-^_`x">2</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Design-feature-1-b520a58f631645a0b0bfd6e23da7332e">Design feature 1</a>, <a href="https://www.notion.so/Design-feature-2-ae50f170e33a4514a7891881faacd22f">Design feature 2</a>, <a href="https://www.notion.so/Design-feature-3-cac014ed50864751a32c421626f3c5fd">Design feature 3</a></td><td class="cell-f]&lt;@">Complete,Complete,Complete</td><td class="cell-=Ry&gt;"><time>@September 3, 2021</time></td></tr><tr id="ef40cb41-dcc8-495b-b064-b9154cbb59d4"><td class="cell-title"><a href="https://www.notion.so/Start-gathering-Development-Team-ef40cb41dcc8495bb064b9154cbb59d4">Start gathering Development Team</a></td><td class="cell-U~s]"></td><td class="cell-jS=:"><time>@September 13, 2021</time></td><td class="cell-^_`x">7</td><td class="cell-~[g@"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-OOWp"><a href="https://www.notion.so/Make-notion-database-of-prospective-team-members-c30ee12ec52d42bcbe846a035f871f33">Make notion database of prospective team members</a>, <a href="https://www.notion.so/Reach-out-to-prospective-team-members-339ce4a65b554a449f5ca05d378196a9">Reach out to prospective team members </a></td><td class="cell-f]&lt;@">In Progress,Not Started</td><td class="cell-=Ry&gt;"><time>@September 19, 2021</time></td></tr></tbody></table></div></details></li></ul></div></div><div id="a79e050f-bdd3-4b44-ab66-b5a7c1839c29" class="column-list"><div id="e28d4207-267a-496e-89a6-f9bef6a6acfa" style="width:33.333333333333336%" class="column"><p id="6cc2bbaa-aa36-40c8-9c5d-c78c3706e18c" class=""><strong><strong>STEP 3</strong></strong></p><hr id="108143c7-cae6-42f6-9e7c-f0154b62cff2"/><h3 id="524c2323-e59d-46ac-aa9c-d880ccfa9f83" class=""><strong>Prioritize (10 min)</strong></h3><p id="45848fb2-6048-4ad3-9d07-3f9659588102" class="">You&#x27;ve probably brainstormed a dozen or more worthy goals. Now narrow it down to the three that will provide the most value.</p><p id="c8a70251-48fc-495e-a701-3eeb18b5b17b" class="">Yes, three. Mark off a section of your whiteboard and label it &quot;Not doing&quot;. Chances are, the thought of &quot;not doing&quot; something makes your toes curl a little. But be strong! The most successful teams are those who are super clear on what they&#x27;re focusing on vs. what they&#x27;re setting aside for now.</p><p id="5eac67f6-9452-456d-831d-fd77de6120f4" class="">Stand back and reflect on the three goals you&#x27;ve selected. Do they jive with your team&#x27;s north star? Are there things in the &quot;Not doing&quot; section that make you reeeeeeeeeeally uncomfortable?</p><p id="afba36e8-bd5f-45e9-8c7e-fa37b4bb7a5b" class="">Once you&#x27;re fully confirmed on your three goals, assign an owner for each one.</p><h3 id="4c223c9e-325d-4b6f-9bbb-c00b97d728a2" class=""><strong>PRO TIP</strong></h3><p id="2c81a1d2-832b-4b97-84bc-dbda188e8426" class="">Stumped as to what will deliver the greatest value? Consider running the<a href="https://www.atlassian.com/team-playbook/plays/trade-offs"> Trade-off Sliders</a> play.</p></div><div id="4bb8b3b6-0516-4302-93de-e597251e1159" style="width:33.333333333333336%" class="column"><p id="8683d314-6ece-4f28-a46f-f2b8b394c886" class=""><strong><strong>STEP 4</strong></strong></p><hr id="6c62ed1d-b7bc-4b73-932f-bdd6ee2d7b7c"/><h3 id="58181458-4848-44e8-a2bc-abf2206b3df0" class=""><strong>Signals (15 mins)</strong></h3><p id="a78e4c00-c7e9-4a14-8214-aa23c0d9a085" class="">Take the three goals that you&#x27;ve agreed on and think about what &quot;signals&quot; you can listen for that will tell you whether you&#x27;re on the right path – similar to key performance indicators (KPIs). Spend 5 minutes per goal brainstorming and narrowing down.</p><p id="f7a099a8-2804-4e48-a172-29d5c1e73212" class="">Think carefully about which signals will actually be meaningful and encourage the right decisions or behaviors on your team.</p><p id="44cd7e8d-c97e-4258-aab3-6adccbc771f0" class="">Remember that Bondi Beach body you want? We said that &quot;go to the gym 3 times a week&quot; was a poor way to think about the goal itself, but going and working out regularly would actually be a good signal that you&#x27;re on the right track. So we&#x27;ve got...</p><p id="465c5136-7671-4bd5-84b6-4218bb414fce" class=""><strong>Goal</strong></p><ul id="bc7eb905-6221-48ef-936a-4c0f29300c1e" class="bulleted-list"><li>Feel rockin&#x27; in a swimsuit at Bondi Beach this summer</li></ul><p id="f92a0eb2-bbae-49f1-9cfa-ba464b3f3222" class=""><strong>Signals</strong></p><ul id="87908648-193e-483e-bc3a-8487a3b13263" class="bulleted-list"><li>I&#x27;m exercising (like, really sweating) 3+ days each week</li></ul><ul id="f5c6c31b-744d-44f9-b13a-8be4641894d0" class="bulleted-list"><li>I&#x27;m eating 3 nutritious meals each day, and not snacking</li></ul><ul id="a342f11a-a794-447d-8934-19693ef8927d" class="bulleted-list"><li>I&#x27;m losing 1 kilo every 10-14 days</li></ul></div><div id="3e07a5be-418e-4cb4-943b-81f6cad00ad1" style="width:33.33333333333333%" class="column"><p id="f1fb489c-d29b-42cf-a0b9-c368b982c753" class=""><strong><strong>STEP 5</strong></strong></p><hr id="bf4c3799-c44a-40de-bf28-a555c8701dcd"/><h3 id="58d17613-86be-4704-a321-2cc66a13ad68" class=""><strong>Measures (30 min)</strong></h3><p id="a6a4e0ae-d904-4a9d-9956-876b8fa1d719" class="">With your goals and signals in mind, look toward the end of your planning horizon. What would make you stop pursuing this goal? What does success really look like? Remember: just because you&#x27;d stop pursuing the goal doesn&#x27;t mean it would cease to be important or that you&#x27;d walk away from it entirely. Think of the measures you define here as your permission to take your foot off the gas for a moment and think about what to focus on next.</p><p id="f055a824-a6a1-4cc2-b313-6acb1889bf99" class="">As the term suggests, measures need to be measurable. And they should be specific so assessing your status against it is crystal-clear. However...</p><p id="1040a186-450b-477a-ae5c-82cac91b440c" class="">Avoid binary measures that only have a yes or no outcome – they don&#x27;t allow for (let alone encourage) stretching outside of your comfort zone. Speaking of which, don&#x27;t be afraid to be bold here. A narrowly-missed measure is better than an ultra-conservative measure that&#x27;s met ahead of schedule.</p><p id="31f3886e-b9e5-4840-80a3-d6c6b8b2efd9" class="">So thinking about our dreams of Bondi Beach swagger, we might have...</p><p id="59199860-2163-475b-a247-f5867c326922" class=""><strong>Goal</strong></p><ul id="657ce1a4-6b6d-43de-a016-ae51308844ab" class="bulleted-list"><li>Feel rockin&#x27; in a swimsuit at Bondi Beach this summer</li></ul><p id="34a0effb-9f9c-4316-9621-9298e499a4aa" class=""><strong>Signals</strong></p><ul id="8f0079e1-1885-442a-b465-7a3e1791e640" class="bulleted-list"><li>I&#x27;m exercising (like, really sweating) 3+ days each week</li></ul><ul id="059e7b95-6a04-44f5-9639-2ebdb4eb4405" class="bulleted-list"><li>I&#x27;m eating 3 nutritious meals each day, and not snacking</li></ul><ul id="358c1ed8-c3a9-4b15-8ed7-29f43ccb675d" class="bulleted-list"><li>I&#x27;m losing 1 kilo every 10-14 days</li></ul><p id="f45ffd43-3ded-4c3c-8773-8647c19c3813" class=""><strong>Measures</strong></p><p id="5db5ffeb-a340-4637-ab86-818d846b290d" class="">By the first day of summer;</p><ul id="307e8fe6-a2d7-4c8f-9888-4485320887ca" class="bulleted-list"><li>my body mass index (BMI) will drop by &gt; 20%</li></ul><ul id="38e90e56-34f0-4912-ace9-7c1d5cc0984f" class="bulleted-list"><li>I will have shed more than 10kg</li></ul><ul id="8258a30e-8d2b-4e2d-a571-65fbc89d6cdd" class="bulleted-list"><li>I can run a 5km soft sand run in under 25 mins</li></ul><h3 id="14cf9a2d-0aab-499a-8d30-389efdd96082" class=""><strong>PRO TIP</strong></h3><p id="59892bd1-90f2-40d7-a95f-81daa5fff5e6" class="">If discussing as a full team feels unwieldy, break into small groups and have each goal&#x27;s owner lead the discussions. You&#x27;ll be able to go deeper this way.</p></div></div><p id="eaae3b7c-6c48-437c-bd18-e4359eca4c7e" class=""><strong><strong>STEP 6</strong></strong></p><hr id="3d392c76-cdc8-4ff3-84b4-10ab97476866"/><h3 id="699b9a5a-8d4b-41e8-ba5f-02979464359b" class=""><strong>Wrap it up (10 min)</strong></h3><p id="5a936654-a6d3-4352-b2b5-2df5e527fc55" class="">You&#x27;re almost ready to get out there and get on with it – kudos!</p><p id="ce4a000a-6242-441d-8d24-9241fdb3a517" class="">But before you do, bust out your best chin-scratching-deeply-contemplative pose and look at the whole thing. Does this all wash well? Did you leave anything out? Do each of the goals you&#x27;ve selected feel right? Will the signals you&#x27;ve chosen be the right guardrails as the project moves along?</p><p id="5911a775-6413-4c45-a275-e15bcae44bea" class="">Then agree on next steps. Validate any assumptions you&#x27;ve made here (such as an assumption that something you want to measure is actually measurable). Write out a task list for getting mechanisms in place to track and report on your signals and measures, and assign owners.</p></div></article></body></html>

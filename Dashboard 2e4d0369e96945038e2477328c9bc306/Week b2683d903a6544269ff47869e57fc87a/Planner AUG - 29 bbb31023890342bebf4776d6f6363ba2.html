@@ -1,0 +1,644 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Planner | AUG - 29</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bbb31023-8903-42be-bf47-76d6f6363ba2" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1585435465945-bef5a93f8849?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🗓️</span></div><h1 class="page-title">Planner | AUG - 29</h1></header><div class="page-body"><p id="d85ceec8-3124-4b75-b250-9862ebbf545b" class="">
+</p><p id="09fecfd5-6b3a-44d5-9715-a2ac4e4760ac" class="">
+</p><p id="69c0a427-40cc-468e-a534-314afe30475d" class="">
+</p><hr id="9e73b54a-ad9d-41c5-8843-3c0f05a38696"/><div id="d4d30c51-425b-488a-a5f6-51917d223d2a" class="column-list"><div id="891096e0-ac0e-4f34-b14c-4495edef47a3" style="width:58.33333333333333%" class="column"><h1 id="65d896cc-a94d-477a-ac0f-8388095f32c0" class="">🎯 Tasks</h1></div><div id="dcdb470e-7e53-4d19-973e-99189d624aca" style="width:25%" class="column"><p id="ce539962-5e76-4ab3-b11f-3ff65c5b3796" class="">Enter this weeks milestone(s)</p><ul id="a1b5a18b-b842-4abf-bb26-cd4551ba8b3b" class="block-color-yellow_background bulleted-list"><li>Start learning backend engineering</li></ul><ul id="cfdc0f33-391c-48c4-bcdd-c3a905178993" class="block-color-teal_background bulleted-list"><li>Recruit Team for Project H01</li></ul><ul id="b67bb599-05e9-45fa-9904-59b8b96bb7e0" class="block-color-blue_background bulleted-list"><li>Work on Project H01</li></ul></div><div id="dac98049-2614-4db4-8e61-3bdb32a73b64" style="width:16.666666666666664%" class="column"><h1 id="22409f6f-1996-4011-b653-822ef99a5199" class="">✔Get It Done</h1><p id="8ea89fe1-33fd-490a-bad3-3b95132d8a61" class=""><mark class="highlight-gray">Things that needs to get done this next week</mark></p></div></div><hr id="cb5cdbcd-e135-4282-a158-ee7fe8e9434a"/><h1 id="54350ef4-dd12-4c55-bfbc-ea416fc17401" class="">Today</h1><hr id="fe9b7fb7-257b-482a-9d7c-288ecfd97ef0"/><div id="fe682dc3-2d3b-4262-b7d8-289ec00944c2" class="column-list"><div id="0e5a9db3-e614-4660-bc7c-4e882a5e9d8d" style="width:50%" class="column"></div><div id="bab4bbbe-05cd-40cb-b1ed-64f2f29eaa40" style="width:50%" class="column"></div></div><hr id="70035c13-62c9-426b-b941-5de080e83e4c"/><div id="4f9480f7-f59e-499d-9183-eb9db8c111ba" class="column-list"><div id="d36a0af3-5a76-4fe4-95c6-ee6d82c97885" style="width:20%" class="column"><p id="4580a491-556a-470d-9f4a-66d18a93ee91" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="b150b735-0618-45d7-a452-632d4f0f2652" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="73ca2a2c-9f6d-43f1-9c60-3232da479dbb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="5898104a-db91-4b7d-9f29-ea99eb024919" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="09291723-adb0-4aeb-9d95-c32daf8f80bc"/><p id="549a6c4b-98ce-4e1f-9c53-6373b3b2bc88" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="76972bee-03fb-4a49-be50-4116eafd0edf" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="66f23a81-d503-4502-a036-d630fd3ddf34" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Meditate</span></li></ul><ul id="d52c5d0c-3cd3-4a84-a0d5-54ff6f0ed17b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan Day</span></li></ul></details></li></ul></div><div id="ca2d4e4c-37af-44cb-9490-052cdca0d350" style="width:20%" class="column"><p id="3cb27620-6f31-4e44-bce5-8472a5d0b1d9" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="9827b428-ab58-4462-8c58-3045a3200b44" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="27bbc619-f1e7-46ca-9d1a-9645d9893a67" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="aaf7609d-dc9e-48f1-acee-02fd8032ed79" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="6c7d2550-0008-48c5-bb5b-a6adf226f1e9"/><p id="b7a5daf1-7b10-46b8-9324-98b05da0f044" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="4a0c2a15-d020-4844-9faa-693f6f99f56e" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="496cb586-b286-4d5f-a99e-bc97fa946537" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Meditate</span></li></ul><ul id="8033c934-b882-437d-a598-6c371734aea1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan Day</span></li></ul></details></li></ul></div><div id="24888362-e9dc-4873-abf9-75cf416d55b7" style="width:20%" class="column"><p id="042bc51c-ed91-4d5a-be7b-481fb4ae607c" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="66244139-a5e9-4d34-a76d-f93ffdbe38cf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="5dec36d0-a98e-4a63-abda-bed9fb30efea" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="ceea4b3d-3f1d-4b17-9941-45c89a5e0f6e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="573d374a-e9f4-4ee5-b4de-16b4b4dcb6a7"/><p id="22029382-b237-405c-abe9-a5a1bcc6264b" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="d5fa3fa2-6b5f-420c-a19b-fd23291819e5" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="2c15e5c8-9b6a-4a30-b9e6-8bd78bec4a14" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Meditate</span></li></ul><ul id="f8d3b56c-c0db-4fa5-a56f-7e5befe8f523" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan Day</span></li></ul></details></li></ul></div><div id="2958a900-919e-465b-aa9d-754e6412a0ea" style="width:20%" class="column"><p id="2cf15bbf-6959-4129-ba9f-8bbb3329b7ea" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="861c6e9b-ac25-49b1-8fac-96853cabfeb9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="d51f5c6a-6c07-4b2d-971d-d1efdec6b85b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="81ec4896-4370-4f1c-89ba-a3d9b7615e1b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="02269b74-22a5-4a11-8146-ec56a3f520b1"/><p id="776094a8-36da-4655-acb7-e4a3b3b40439" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="1cadff7b-9f4b-48c6-b62a-4e83ac5244ce" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="4f2fc942-86f1-49bf-8d38-e80d73d581d0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Meditate</span></li></ul><ul id="69e8f2db-abd0-42f1-bda8-ed8b54f0ad00" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan Day</span></li></ul></details></li></ul></div><div id="2d6bb5df-7f74-47cb-819a-8b3d9a7ffdfc" style="width:20%" class="column"><p id="1ed6596e-17cf-47e8-b407-c1a6cdc90df3" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="d015e1a5-f1c9-4039-8e9c-688d7323edf9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="c77c4b77-b793-4050-b481-5004dd56c64e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="7dd16257-bc7b-4278-b78a-608e12eae150" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="5710fa33-d1bb-4c77-8d2b-885ea6526305"/><p id="8ff402c5-0a48-449f-afd3-d0ce344691fd" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="c4bb0a2f-f1af-46df-b52f-4dac40aaa129" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="396e31ee-1435-4138-90c6-651b828e1e35" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Meditate</span></li></ul><ul id="80bee694-ce88-43e6-97d1-2fcfc736f2df" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan Day</span></li></ul></details></li></ul></div></div><div id="8f5fb775-c355-4a9a-93ef-c42b025b17dc" class="column-list"><div id="7aa42092-7805-4cb2-a406-25dc5b66535b" style="width:33.333333333333336%" class="column"><p id="516d7257-251e-4542-bfad-7285a77f4300" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="25d9debd-757b-433d-8918-05e2d6324e4e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="538edb57-9a72-4792-b4c3-977fbe4f0595" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="eca5c832-8fed-4a04-8d93-7430bb6992e6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="b303f1e7-4bc4-46fd-b42b-15e3324bed39"/><p id="4f136809-f78f-4860-99d7-932744037c6e" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="dab02937-bc0e-4d75-9970-bef5934cef0d" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="45a44576-32c8-4523-b948-0512affa943e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Put your daily habits here (to separate them from tasks that aren&#x27;t constants)</span></li></ul></details></li></ul><ul id="9da90687-4543-49b6-bb0c-2b17aadab0a1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul></div><div id="cf57a5c8-de18-4bd2-8ec2-506054eb3aa2" style="width:33.333333333333336%" class="column"><p id="8088efa6-eefb-43e7-9a82-d62289e81d86" class=""><mark class="highlight-blue"><strong>Most Important Tasks</strong></mark></p><ul id="940e1327-20fb-439d-befb-2dbad770185e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Plan next week</span></li></ul><ul id="2f82fa03-f3b0-4527-8b05-8b83ed947002" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><ul id="915c3d3c-82b6-470f-acc4-6cf16b62f091" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><hr id="7e99fb37-92a7-4eb7-a22f-421f74296d52"/><p id="afaf04dc-cb24-4bd8-b99c-b47b5a1ff0ef" class=""><mark class="highlight-blue"><strong>Todos</strong></mark></p><ul id="f7195b77-ba71-43ff-a574-9ddaea382083" class="toggle"><li><details open=""><summary>Daily Tasks</summary><ul id="15f84ac3-9374-47f7-a8f1-f429b98b1aa0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Put your daily habits here (to separate them from tasks that aren&#x27;t constants)</span></li></ul></details></li></ul><ul id="3cc9a646-fc1e-44b5-b0bb-b1d27cb464df" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Prepare and plan for next week</strong></span><ul id="92a7d4c1-7a26-43bd-9261-8bb906248272" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Workouts</span></li></ul><ul id="d8ebd454-8435-4a3c-a136-21b71ef57af0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Classes</span></li></ul><ul id="aa8714b9-2473-4c1f-9da7-e95b883a1ab2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Articles</span></li></ul><ul id="2067d3b6-5dd2-442f-ae0c-5f8c96933ebc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Videos</span></li></ul><ul id="6f31c70e-5b2d-4714-9f0e-cc6a62d0a84f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Newsletter</span></li></ul><ul id="6a80288d-32bc-4703-833e-c341fe07293e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Assignments</span></li></ul><ul id="31f8c6ae-87b5-413b-9b01-a90ae67e45b9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Homework</span></li></ul><ul id="45f4a9a1-e47a-45f5-912c-0c82595cea34" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Social events</span></li></ul><ul id="5ec6c89f-a41c-46bb-bce6-de6c25b35273" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Other plans or todos.</span></li></ul></li></ul><p id="909a5e86-071e-414a-9ec4-5032e3816ff2" class="">
+</p></div><div id="d60ef439-a3fd-4e82-8cc5-c1a48ffecf61" style="width:33.33333333333333%" class="column"><h1 id="d29b7ba7-270d-4c1a-8020-478895543d47" class=""><mark class="highlight-gray_background">Color Coding</mark></h1><ul id="9f935933-c092-4f39-8689-a019b93d63d6" class="block-color-yellow_background bulleted-list"><li>Cakeazy</li></ul><ul id="82bbf213-7d6a-4b25-8550-41b8ec8d89a9" class="block-color-teal_background bulleted-list"><li>Marshmallow&#x27;s Website</li></ul><ul id="120df34e-ab9e-4058-9ba2-838251c3646b" class="block-color-blue_background bulleted-list"><li></li></ul><ul id="f963658f-a95f-4745-be36-4c7f650feb8d" class="block-color-red_background bulleted-list"><li></li></ul><h1 id="908931bf-bd24-4587-846d-14c46bbee368" class=""><mark class="highlight-yellow_background">OUTSTANDING TASKS</mark></h1><p id="88770808-41f5-4e45-9812-b0cd9a3fc75c" class=""><mark class="highlight-gray">What didn&#x27;t get done that was planned for this week?</mark></p><h1 id="6bc144c9-c433-4cd2-af65-434c2bee0a19" class=""><mark class="highlight-teal_background">PUBLISHED</mark></h1><p id="c5cecb26-9f68-48ef-a3aa-72afb00499b0" class="">(<em>this field is mostly for content creators... Delete or replace if you won&#x27;t use it)</em></p><ul id="6d553f02-4d62-4542-8eb9-87956b3fad9e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Blog Article</span></li></ul><ul id="18967392-25cb-43a6-a6ed-71c488e41d30" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">YouTube Video</span></li></ul><ul id="8ac6fb0f-18f7-440b-aef0-a9f6369f9f7b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Newsletter</span></li></ul></div></div><hr id="2a477ec4-e1f5-4419-a0cc-f9cc1a7d7776"/><h1 id="dc160888-593d-4ab1-9ae0-e1591b0bec16" class=""><mark class="highlight-blue">WEEKLY REFLECTION</mark></h1><div id="750e28ab-9256-4396-8703-6e6e9fd2b4e5" class="column-list"><div id="c861acdd-e4f2-40b1-8021-4623b17036eb" style="width:50%" class="column"><h2 id="45016766-e759-4120-ae9c-1519bf346611" class="">PRODUCTIVITY:</h2><p id="c85faba2-bc4a-4d42-804f-6e83dc02589d" class=""><mark class="highlight-gray">Write here.</mark></p><h2 id="0f38d402-4cf8-4b6c-98b9-42fd39336c8d" class="">EMOTION:</h2><p id="4169ded8-b6ab-4fa4-ad68-362befae8e9c" class=""><mark class="highlight-gray">Write here.</mark></p><p id="3cca87e2-92aa-4180-90cb-a794752cf0c2" class="">
+</p></div><div id="50369c7b-20e0-4f9f-a448-7152efbce2b3" style="width:50%" class="column"><p id="5478648f-238f-41e9-8993-1483015bd4ed" class=""><strong>Describe this week in 3 words:</strong><div class="indented"><p id="d1fdba64-8461-473a-bad6-be6fb28d1969" class=""><mark class="highlight-gray">Write here.</mark></p></div></p><p id="bcf8110e-fb1a-42b6-a5c1-66ac3eeea621" class=""><strong>This weeks highs / good / happy / proud moments:</strong><div class="indented"><p id="f43ba697-e2f5-4686-91f5-ee3c6de06843" class=""><mark class="highlight-gray">Write here.</mark></p></div></p><p id="30fda8ab-9078-43a9-b25b-07ea18461a56" class=""><strong>This weeks lows / frustrations / challenges / struggles:</strong><div class="indented"><p id="7edb4b4a-91c9-4d03-9d19-ae8e5039f103" class=""><mark class="highlight-gray">Write here.</mark></p></div></p><p id="a92df507-2a60-4aff-a8f0-3f850303c687" class=""><strong>What I learned this week:</strong><div class="indented"><p id="0e8cbba3-4ca7-4833-be2f-5b7805cabb2d" class=""><mark class="highlight-gray">Write here.</mark></p></div></p><p id="5985a0b5-b661-4ad1-86b4-39230d95c9df" class=""><strong>Who / what I&#x27;m grateful for:</strong><div class="indented"><p id="d046d9e7-1d6a-42db-aee1-36ab2fc29442" class=""><mark class="highlight-gray">Write here.</mark></p></div></p><p id="9a0d467c-ea73-4798-b2a8-c7787609f576" class=""><strong>What I&#x27;d like to improve:</strong><div class="indented"><p id="40cab404-4e17-4270-b9c9-24c6b4233c63" class=""><mark class="highlight-gray">Write here.</mark></p></div></p></div></div><hr id="2c300270-cca7-4ea0-86f3-dd3104bcf0ff"/><ul id="6dc54cbe-3df4-4f7f-8ebc-213a7162fe37" class="toggle"><li><details open=""><summary>Weekly Review</summary><h1 id="c4e02fc4-5c89-4e79-b286-6356ab07145e" class="block-color-yellow_background">Weekly Review</h1><p id="782f0b67-87b2-421c-96e4-512c480af5fe" class="">
+</p><h2 id="a1b7078b-e2ca-483f-b440-640e248efe63" class="">1. Collect</h2><p id="f0f73b71-0a3d-46fe-8a90-54fdc25e0ada" class="">Empty Your Mind. Find all paper stuff and create next actions for them.</p><hr id="b00d8a98-4eae-4ebd-b246-5ddd8f8c33d0"/><h2 id="f1fea806-7ecb-48d4-beca-9d9ff7624ce8" class="">2. Process</h2><p id="db1cd7d3-9112-4266-be4a-ea2af9676c5a" class="">Inbox Zero</p><hr id="6152f18f-9d55-4999-8bc9-d48ded2b3477"/><ul id="4123b2cf-5be6-4b6a-8047-a07c27c32c10" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Email</span></li></ul><ul id="234c6624-d23b-46df-83ce-927fe25c98f2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Inbox</span></li></ul><h2 id="d1029ffb-8ad4-4942-beb4-b8f60a4a7fd3" class="">3. Past Events</h2><p id="ffaed965-d72c-4d3e-8ccc-daa2461a992d" class="">Review last week&#x27;s calendar</p><hr id="2b9961a9-a975-4f5c-86af-f6d8f0cf132d"/><h2 id="6efc754e-9254-4cbe-8951-c5662759a23b" class="">4. Next Events</h2><p id="2f233b12-05a8-4ebf-99bd-8d62169b92ee" class="">Review this week&#x27;s calendar</p><hr id="a2bfffbc-e58e-46b5-bd23-9cafcd1e98f4"/><h2 id="e3a8257b-71b2-4ee7-af7f-f639ee5eb4d9" class="">5. Next Actions</h2><p id="70fd3cfb-0170-4204-89aa-0ed09482f9f6" class="">Check off completed actions. Move things that should be in other lists. Update info.</p><hr id="38f10716-aca0-4bbd-8571-672986e71670"/><ul id="f917ae0c-3fd7-4a92-a908-8088dd9b950c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Next Actions Reviewed</span></li></ul><h2 id="883d1846-bb8a-43cc-a3f6-b43d5106fa70" class="">6. Waiting For</h2><p id="f2460c10-f18c-4423-9bdc-2ae61283c3fd" class="">Check off received items. Record appropriate actions for any needed follow-up.</p><hr id="ba0d83dd-4351-47f4-872a-18886e2d74b1"/><ul id="c000dfca-8090-4d14-89c9-25a21cf1ebc3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Waiting For Reviewed</span></li></ul><h2 id="721f240f-afb0-4ae0-b13f-58ac3a17cd2d" class="">7. Projects</h2><p id="d56c1af1-1f8c-4726-af86-473258273bf7" class="">Evaluate the state of your projects, ensuring that at least there is one Next Action for each.</p><hr id="bb92cff4-b4d1-4a16-89a9-06a06e6d924b"/><ul id="08629e77-83a9-4b3d-a0a2-8d59be390434" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Projects Reviewed</span></li></ul><h2 id="1883b79f-bc34-4dde-ad65-82b645400941" class="">8. Someday/Maybe</h2><p id="43546888-09b2-465c-ad45-40cc081ae19e" class="">Check for any things that may have become active and process them. Delete items no longer of interest.</p><hr id="497bea88-34b6-4d44-811f-6d845f795064"/><ul id="4dadc7cc-44da-49ce-96b2-13059c55e2d3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Someday/Maybe Review</span></li></ul><h2 id="36667a83-de9a-4225-a29c-6aca6017e58a" class="">9. Ideas</h2><p id="755c3a01-293d-423c-abed-03628990fa82" class="">Are there any new, creative, wonderful ideas in your head?</p><hr id="f7ec5cf7-315e-4b10-9063-6e51a0999177"/><h2 id="513ebddb-3fdc-4054-822e-e2e837522f76" class="">10. Finalize</h2><p id="cb8ed9d1-32f1-4142-9a9f-2e8d1526a09d" class="">Process all new actions from above.</p><h1 id="6ab64122-2693-4e5f-a6ad-3985b2296356" class="">Weekly Review Completed!</h1></details></li></ul><hr id="880788c6-5759-46ec-bce2-e58a15bb13f0"/><p id="48053bf1-be1d-469f-a6db-60225f5504f4" class="">
+</p><p id="04bf0fc5-314e-4ad4-970f-ebe388da4617" class="">
+</p></div></article></body></html>

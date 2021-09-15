@@ -1,0 +1,647 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Hub&#x27;s Project Management</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="33eee59e-8459-4056-97f0-b604039b62ad" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🏠</span></div><h1 class="page-title">Hub&#x27;s Project Management</h1><table class="properties"><tbody><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Department</th><td><span class="selected-value select-value-color-orange">Engineering</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Development Area</th><td><span class="selected-value select-value-color-blue">Corporation Development</span><span class="selected-value select-value-color-gray">Professional Development</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>Planner</th><td><a href="https://www.notion.so/ayodele/Project-H01-Planning-Home-53b7d6ff188444dcb5b3cca538c1e5f9" class="url-value">https://www.notion.so/ayodele/Project-H01-Planning-Home-53b7d6ff188444dcb5b3cca538c1e5f9</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Stage</th><td><span class="selected-value select-value-color-green">In Progress</span></td></tr><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Starting Date</th><td><time>@August 28, 2021</time></td></tr></tbody></table></header><div class="page-body"><div id="502753a8-c6bb-493f-a4ad-c743c54ac486" class="collection-content"><h4 class="collection-title">Project Plan</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Assigned</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M7.77892,7.06304 L4.62218,11.2875 C4.58556,11.3416 4.55285,11.4392 4.5504,11.5052 C4.5504,11.7022 4.7047,11.8619 4.89562,11.8619 L11.1383,11.8619 C11.6139,11.8619 11.9996,12.2598 11.9996,12.7507 L11.9996,13.1111 C11.9996,13.602 11.6139,14 11.1383,14 L1.861927,14 C1.385853,14 1.00011061,13.602 1.00011061,13.1111 L1.00011061,12.6858 C0.99718092,12.4783 1.0523567,12.3098 1.176868,12.1466 L4.39269,7.79888 C4.74816,7.31841 4.74572,6.65139 4.38683,6.17354 L1.400013,2.19436 C1.27306,2.03028 1.216419,1.85993 1.219349,1.65006 L1.219349,0.888889 C1.219349,0.397968 1.605091,0 2.08117,0 L10.91906,0 C11.3946,0 11.7804,0.397968 11.7804,0.888889 L11.7804,1.24925 C11.7804,1.74017 11.3946,2.13814 10.91906,2.13814 L5.13634,2.13814 C4.94542,2.13814 4.79064,2.29801 4.79064,2.49522 C4.79308,2.56049 4.82482,2.65709 4.86095,2.71087 L7.78038,6.68628 C7.8297,6.74847 7.84435,6.7934 7.84142,6.87363 C7.84435,6.95493 7.82921,7.00048 7.77892,7.06304 Z"></path></svg></span>Days Until Due</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>From</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Stage</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>To</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>link</th></tr></thead><tbody><tr id="c8497e40-3865-4577-98ce-3694c47f2e2b"><td class="cell-title"><a href="https://www.notion.so/Validate-idea-c8497e403865457798ce3694c47f2e2b">Validate idea</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 2, 2021 12:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 2, 2021 12:00 PM-1:00 PM</time></td><td class="cell-{QQS"></td></tr><tr id="baf4f946-4219-4733-a89b-bc9e9170fe53"><td class="cell-title"><a href="https://www.notion.so/Develop-elevator-pitch-baf4f94642194733a89bbc9e9170fe53">Develop elevator pitch</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-12</td><td class="cell-w`y="><time>@September 2, 2021 1:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 3, 2021 7:00 AM-8:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="7733cbf5-bacb-4218-bf90-3b79097f2b7a"><td class="cell-title"><a href="https://www.notion.so/Complete-Hub-s-project-planning-page-7733cbf5bacb4218bf903b79097f2b7a">Complete Hub&#x27;s project planning page</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 3:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-red">Delayed</span></td><td class="cell-i\?I"><time>@September 3, 2021 8:00 PM</time></td><td class="cell-{QQS"><a href="https://www.notion.so/ayodele/Hub-33eee59e8459405697f0b604039b62ad" class="url-value">https://www.notion.so/ayodele/Hub-33eee59e8459405697f0b604039b62ad</a></td></tr><tr id="b520a58f-6316-45a0-b0bf-d6e23da7332e"><td class="cell-title"><a href="https://www.notion.so/Design-feature-1-b520a58f631645a0b0bfd6e23da7332e">Design feature 1</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 3:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="ae50f170-e33a-4514-a789-1881faacd22f"><td class="cell-title"><a href="https://www.notion.so/Design-feature-2-ae50f170e33a4514a7891881faacd22f">Design feature 2</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 10:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 4:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="cac014ed-5086-4751-a32c-421626f3c5fd"><td class="cell-title"><a href="https://www.notion.so/Design-feature-3-cac014ed50864751a32c421626f3c5fd">Design feature 3</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 11:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Choose-the-features-for-your-app-5c0f9330542e48699882a303fcea1e54">Choose the features for your app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 4, 2021 5:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="2f3c66c3-4b48-4f5e-879c-0c16206baed6"><td class="cell-title"><a href="https://www.notion.so/Pencil-sketches-of-the-UI-2f3c66c34b484f5e879c0c16206baed6">Pencil sketches of the UI</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-8</td><td class="cell-w`y="><time>@September 6, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 7, 2021 9:00 AM</time></td><td class="cell-{QQS"></td></tr><tr id="ed9e096b-4783-46e0-bffb-415d8061cc18"><td class="cell-title"><a href="https://www.notion.so/Break-ed9e096b478346e0bffb415d8061cc18">Break</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-12</td><td class="cell-w`y="><time>@September 3, 2021 11:00 AM</time></td><td class="cell-S@li"></td><td class="cell-shmX"></td><td class="cell-i\?I"><time>@September 3, 2021 11:15 AM</time></td><td class="cell-{QQS"></td></tr><tr id="40e8ade9-8481-4ba0-8c6e-404a4665153c"><td class="cell-title"><a href="https://www.notion.so/Break-40e8ade984814ba08c6e404a4665153c">Break</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-11</td><td class="cell-w`y="><time>@September 3, 2021 1:00 PM</time></td><td class="cell-S@li"></td><td class="cell-shmX"></td><td class="cell-i\?I"><time>@September 3, 2021 2:00 PM</time></td><td class="cell-{QQS"></td></tr><tr id="1358d1e9-f518-4d9c-a7e1-9e3965c178e7"><td class="cell-title"><a href="https://www.notion.so/Figma-designs-of-the-UI-1358d1e9f5184d9ca7e19e3965c178e7">Figma designs of the UI</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-4</td><td class="cell-w`y="><time>@September 8, 2021 9:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 10, 2021 11:59 PM</time></td><td class="cell-{QQS"></td></tr><tr id="7709d218-a5be-461f-b793-df9de34fa032"><td class="cell-title"><a href="https://www.notion.so/Design-onboarding-screens-7709d218a5be461fb793df9de34fa032">Design onboarding screens</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">0</td><td class="cell-w`y="><time>@September 11, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-brown">Up Next</span></td><td class="cell-i\?I"><time>@September 15, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="c30ee12e-c52d-42bc-be84-6a035f871f33"><td class="cell-title"><a href="https://www.notion.so/Make-notion-database-of-prospective-team-members-c30ee12ec52d42bcbe846a035f871f33">Make notion database of prospective team members</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">0</td><td class="cell-w`y="><time>@September 13, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Start-gathering-Development-Team-ef40cb41dcc8495bb064b9154cbb59d4">Start gathering Development Team</a></td><td class="cell-shmX"><span class="selected-value select-value-color-blue">In Progress</span></td><td class="cell-i\?I"><time>@September 15, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="339ce4a6-5b55-4a44-9f5c-a05d378196a9"><td class="cell-title"><a href="https://www.notion.so/Reach-out-to-prospective-team-members-339ce4a65b554a449f5ca05d378196a9">Reach out to prospective team members </a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">1</td><td class="cell-w`y="><time>@September 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Start-gathering-Development-Team-ef40cb41dcc8495bb064b9154cbb59d4">Start gathering Development Team</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 17, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="e6e1207b-4b4a-4330-abbf-3b807aec70be"><td class="cell-title"><a href="https://www.notion.so/Create-prototype-e6e1207b4b4a4330abbf3b807aec70be">Create prototype</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">4</td><td class="cell-w`y="><time>@September 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Design-the-apps-user-journeys-4ad7f5e0d28044999a2038341222a420">Design the apps user journeys</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 20, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="366cde46-963d-4bc3-943a-3445b6cb027f"><td class="cell-title"><a href="https://www.notion.so/Final-UI-review-366cde46963d4bc3943a3445b6cb027f">Final UI review </a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">4</td><td class="cell-w`y="><time>@September 20, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Review-the-apps-user-interface-design-93c72535c29c4f7babd5cbeeb845a065">Review the apps user interface design</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@September 20, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="bbe2e20f-df40-43d5-b284-46d95ce0f6aa"><td class="cell-title"><a href="https://www.notion.so/App-development-bbe2e20fdf4043d5b28446d95ce0f6aa">App development</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">96</td><td class="cell-w`y="><time>@September 21, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Build-the-app-2c10df8bb96f4c0bbe8ef6b5d7138c5e">Build the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 21, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="f3bd35b1-dfbc-4e3f-b676-63adfc92b66e"><td class="cell-title"><a href="https://www.notion.so/Write-a-press-release-for-the-app-f3bd35b1dfbc4e3fb67663adfc92b66e">Write a press release for the app</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">15</td><td class="cell-w`y="><time>@October 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@October 1, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4254fbb2-9266-4b24-b7e1-189c0166376f"><td class="cell-title"><a href="https://www.notion.so/Create-landing-page-4254fbb292664b24b7e1189c0166376f">Create landing page</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="7977397f-6925-41b2-a4c5-895f799a0774"><td class="cell-title"><a href="https://www.notion.so/Create-media-kit-7977397f692541b2a4c5895f799a0774">Create media kit</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 8, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="c2f7dc53-378b-43a4-9457-788781248d89"><td class="cell-title"><a href="https://www.notion.so/Research-App-Store-optimisation-c2f7dc53378b43a49457788781248d89">Research App Store optimisation</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">57</td><td class="cell-w`y="><time>@November 12, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 12, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="adaaf6b1-132a-4889-8c38-18b6d19b42ab"><td class="cell-title"><a href="https://www.notion.so/Email-pre-launch-list-adaaf6b1132a48898c3818b6d19b42ab">Email pre-launch list</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">62</td><td class="cell-w`y="><time>@November 15, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 17, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="af228c31-298d-4138-a4a1-552cf3859d1a"><td class="cell-title"><a href="https://www.notion.so/Market-the-app-in-other-communities-af228c31298d4138a4a1552cf3859d1a">Market the app in other communities</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">70</td><td class="cell-w`y="><time>@November 22, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 25, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="02d35238-dba3-4730-917c-3dbb214a40e4"><td class="cell-title"><a href="https://www.notion.so/Prepare-App-Store-submission-02d35238dba34730917c3dbb214a40e4">Prepare App Store submission</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">76</td><td class="cell-w`y="><time>@November 29, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 1, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="43ba2b03-7c75-4f52-aebd-fcf318c785a5"><td class="cell-title"><a href="https://www.notion.so/Set-up-waitlist-43ba2b037c754f52aebdfcf318c785a5">Set up waitlist</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">97</td><td class="cell-w`y="><time>@December 1, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 22, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4292a581-792d-47c7-9b1e-4f9a483abf4e"><td class="cell-title"><a href="https://www.notion.so/Submit-the-app-4292a581792d47c79b1e4f9a483abf4e">Submit the app</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">98</td><td class="cell-w`y="><time>@December 23, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 23, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="634c1b97-9089-4589-aae5-b729a05277df"><td class="cell-title"><a href="https://www.notion.so/Paid-marketing-campaign-634c1b9790894589aae5b729a05277df">Paid marketing campaign</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">-314</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Put-together-the-marketing-plan-bb54e83de1484319bf0056d4a0dbf960">Put together the marketing plan</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@November 5, 2020</time></td><td class="cell-{QQS"></td></tr><tr id="5fb8f25e-126e-43e8-9993-bd02e33a758c"><td class="cell-title"><a href="https://www.notion.so/Submit-app-to-be-featured-in-app-store-5fb8f25e126e43e89993bd02e33a758c">Submit app to be featured in app store</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">102</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="3c2c339d-dd9b-4a34-ab18-91bff516d403"><td class="cell-title"><a href="https://www.notion.so/Announce-app-launch-3c2c339ddd9b4a34ab1891bff516d403">Announce app launch</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">102</td><td class="cell-w`y="><time>@December 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Submit-the-app-to-the-app-stores-336728d15db94d739cc57cfa4b9bf3f6">Submit the app to the app stores</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="2b051b64-9f77-4430-923b-9453a9ee339c"><td class="cell-title"><a href="https://www.notion.so/Iterate-on-App-Store-Optimisation-2b051b649f774430923b9453a9ee339c">Iterate on App Store Optimisation</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">106</td><td class="cell-w`y="><time>@December 29, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@December 31, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="4f69d3b3-9016-49f9-b631-cdfd2227833d"><td class="cell-title"><a href="https://www.notion.so/Influencer-marketing-campaign-4f69d3b3901649f9b631cdfd2227833d">Influencer marketing campaign</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">134</td><td class="cell-w`y="><time>@December 31, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Market-the-app-7de7a63a04dc4449ba77bdd97a7e1398">Market the app</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@January 28, 2022</time></td><td class="cell-{QQS"></td></tr><tr id="599e0259-6e65-44d6-8dce-30ccf0b7fd7d"><td class="cell-title"><a href="https://www.notion.so/Collect-user-feedback-599e02596e6544d68dce30ccf0b7fd7d">Collect user feedback</a></td><td class="cell-L`Mz"></td><td class="cell-;PSy">134</td><td class="cell-w`y="><time>@January 10, 2022</time></td><td class="cell-S@li"><a href="https://www.notion.so/Improve-the-app-based-on-user-feedback-63b1c657bb2d4fcf8d130cb6f50312ee">Improve the app based on user feedback</a></td><td class="cell-shmX"><span class="selected-value select-value-color-gray">Not Started</span></td><td class="cell-i\?I"><time>@January 28, 2022</time></td><td class="cell-{QQS"></td></tr><tr id="f8ee48dd-a3ee-4131-b4b2-f54e3c7bf1ba"><td class="cell-title"><a href="https://www.notion.so/Brainstorm-ideas-f8ee48dda3ee4131b4b2f54e3c7bf1ba">Brainstorm ideas</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-19</td><td class="cell-w`y="><time>@August 27, 2021</time></td><td class="cell-S@li"><a href="https://www.notion.so/Generate-an-app-idea-b24ed144698742ceb70cbc86202564b5">Generate an app idea</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@August 27, 2021</time></td><td class="cell-{QQS"></td></tr><tr id="28c03e6f-c445-4de5-a7c3-567390219089"><td class="cell-title"><a href="https://www.notion.so/Check-app-stores-for-existing-apps-to-remix-or-improve-28c03e6fc4454de5a7c3567390219089">Check app stores for existing apps to remix or improve</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 1, 2021 2:00 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Generate-an-app-idea-b24ed144698742ceb70cbc86202564b5">Generate an app idea</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 1, 2021 2:45 PM</time></td><td class="cell-{QQS"></td></tr><tr id="ed42f43e-6b74-43c0-974c-681370f85e24"><td class="cell-title"><a href="https://www.notion.so/Review-10-most-similar-apps-ed42f43e6b7443c0974c681370f85e24">Review 10 most similar apps</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 1, 2021 1:15 PM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 1, 2021 2:30 PM</time></td><td class="cell-{QQS"></td></tr><tr id="e2ed9512-4166-45d1-a321-59c8b2316008"><td class="cell-title"><a href="https://www.notion.so/Work-on-project-timeline-e2ed9512416645d1a32159c8b2316008">Work on project timeline</a></td><td class="cell-L`Mz"><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhaycYLmgH1g0zx6E60aVr8dwcAs0HLr7hl3Hg5kUM=s100" class="icon user-icon"/>Ayo Elutilo</span></td><td class="cell-;PSy">-13</td><td class="cell-w`y="><time>@September 2, 2021 11:00 AM</time></td><td class="cell-S@li"><a href="https://www.notion.so/Carry-out-competitive-market-research-7ded5b2e0fc74683af3d780993b72416">Carry out competitive  market research</a></td><td class="cell-shmX"><span class="selected-value select-value-color-green">Complete</span></td><td class="cell-i\?I"><time>@September 2, 2021 12:00 PM</time></td><td class="cell-{QQS"></td></tr></tbody></table></div><p id="31e153f7-69d1-47f7-86bb-de438576215e" class=""><mark class="highlight-gray">Summary of the problem you&#x27;re solving, the impact and the approach to building a solution</mark></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b62ceb61-a2d6-42a0-81c6-329fb4cd65c0"><div style="font-size:1.5em"><span class="icon">👉</span></div><div style="width:100%"><strong>Summary
+…</strong>synchronizes all the organization apps you use and with the help of an AI buddy, Losi, You can maintain consistency in the things that matter. </div></figure><div id="28b6ab3f-8286-4874-a753-915406488284" class="column-list"><div id="ef923be8-5df8-4bde-9054-0740fb5794fe" style="width:50%" class="column"><h3 id="ef48ca68-ef92-4a19-a41c-6e37721041d3" class="">Documents</h3></div><div id="73a0545f-5cb5-4767-977c-bb911b32be7a" style="width:50%" class="column"><h3 id="41399f12-086b-4ef7-9638-f0c59e345df2" class="">Project Team</h3></div></div><div id="a1f15aa0-96ab-4414-b158-40dd1370b6d4" class="column-list"><div id="424a2b9c-12f7-4c5a-ab5d-ccd5fed30663" style="width:50%" class="column"><hr id="683596a4-f827-4fdc-ba31-f348b6d6b8b8"/></div><div id="7e0e4a3d-511c-4660-b437-ea5ca183f335" style="width:50%" class="column"><hr id="df893959-0449-4afb-a3c5-cd1ccc15bf94"/></div></div><div id="7a4a029d-3651-4215-8fa5-be84584ba152" class="column-list"><div id="1759583b-d7dd-47c4-a305-d4a979ecd085" style="width:50%" class="column"><figure id="408173d1-5a1a-4fc7-bb5b-0c04c79a53cd" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Pre%20Planning%20408173d15a1a4fc7bb5b0c04c79a53cd.html"><span class="icon">🌱</span>Pre Planning</a></figure><figure id="36ea941e-65c4-4da2-9505-e0a6ffcf7d62" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Updates%2036ea941e65c44da29505e0a6ffcf7d62.html"><span class="icon">👩‍🔧</span>Updates</a></figure><figure id="d52bf970-40dd-4941-a924-3c4265015c14" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Meeting%20Notes%20d52bf97040dd4941a9243c4265015c14.html"><span class="icon">📝</span>Meeting Notes</a></figure><figure id="cd61ff44-31dc-4fc2-bc5b-13904adfa82f" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Research%20cd61ff4431dc4fc2bc5b13904adfa82f.html"><span class="icon">📑</span>Research</a></figure></div><div id="dca5be0e-8a5d-4921-b662-39d7370e58cd" style="width:50%" class="column"><p id="82da8c40-628c-4568-abf5-600287be946f" class="">👩🏼‍💼 <strong>Project Manager: </strong><span class="user">@Ayo Elutilo</span> </p><p id="38d85429-3b91-4ef7-98ae-3184276f3990" class="">👨🏼‍💻 <strong>Tech Lead: </strong><span class="user">@Ayo Elutilo</span>, <span class="user">@Harry Andrei</span> </p><p id="39482012-1e98-434b-b0af-ca9d262f1cb8" class="">👨🏼‍🎨 <strong>Designers: </strong><span class="user">@Ayo Elutilo</span>, @TBD</p><p id="a087c116-08ca-4fe3-a54c-8a82ed2a2d69" class="">
+</p></div></div><h3 id="5d0ce4a2-7f8e-4e70-a44e-62bdcb392d89" class="">🤝 Problem Statement</h3><hr id="070bbc16-caa3-4fde-a233-5733e092fa09"/><p id="c7b73b30-9a77-4949-9d00-e4966d0b14ae" class="">There are so many organization apps available for us to choose from Todoist to Trello to Notion; So many awesome apps but having these many apps with different features and updates can sometimes be overwhelming. And one thing we try to make sure with organization is consistency. Most people find it to be consistent especially if they&#x27;re expected to be consistent with different apps. It can sometimes get hard. The other option for them is to simplify their process by assigning one thing to another but then if they use apps like notion or apple notes to document their thoughts and lists they can sometimes loose focus because those are not the traditional apps for such features. </p><p id="19203cb4-c6d8-48ae-b753-3efa9058215a" class="">Hub solves all these issues, How?</p><p id="f54aa5c8-ef64-4889-a893-1de6c18a99d2" class="">The app synchronizes all the organization apps you use and with the help of an AI buddy, Losi, You can maintain consistency in the things that matter. This not just an organization app but a <em><strong>Dashboard for your life.  </strong></em><em>The ultimate productivity hack. </em></p><p id="fb4c2afc-a2b9-4f94-a3b1-6d4412ed383c" class="">Synchronize and even create your very own </p><ul id="e4ba84fd-895d-400a-b7d0-44cdf080551c" class="bulleted-list"><li>Todo List</li></ul><ul id="8ecef71a-dedc-4c76-9c28-aee7ec94dc9e" class="bulleted-list"><li>Planner</li></ul><ul id="aa88968e-1478-4a81-ade8-3ab40fa51328" class="bulleted-list"><li>Calendar</li></ul><ul id="a91bdb3f-7c7a-4043-8288-59737a9543cd" class="bulleted-list"><li>Life Timeline</li></ul><ul id="8f2ce89d-2286-44a7-b7c2-409f9fe504c3" class="bulleted-list"><li>Board</li></ul><ul id="8ccc6eb2-9b2c-4306-97da-2cf01c95ff2f" class="bulleted-list"><li>Journal, and so on...</li></ul><h3 id="3d650a04-7b0d-4521-be08-e40a89ef8a35" class="">Pain</h3><p id="0fea5224-1069-4b5f-b057-98e394b3eacb" class=""><mark class="highlight-gray">Summary of the high level pain, followed by the specific pain points below.</mark></p><p id="ace1aad7-0aad-4f09-a295-6059bd0059df" class="">Customers find it hard to to maintain consistency especially for a long period of time .</p><ul id="171219c7-f05b-41d9-aa91-6c6efcba4f5a" class="toggle"><li><details open=""><summary>Users have multiple apps for different ways or organizing. The combination of these apps can be very overwhelming and most times can go against the aim of organization</summary><p id="311243db-71df-4c2d-9a2c-5208b4d7ca92" class=""><strong>Impact</strong>: The users now have to go from one app to the other depending on the  requirement they have in regards to organization</p><p id="675e171e-f566-4495-ab95-d54375eb95e2" class=""><strong>Mitigation: </strong>Users try to have as little apps as possible for organization or they put them in a folder. Some times, since we have a lot of apps, these apps can just get lost on the home screen. </p><p id="cc1c7070-f77f-420d-8614-10dd17dca286" class="">Some users try to avoid it by having one app for one major organizational focus</p><p id="183058ed-3dfc-403b-adbe-869823082730" class=""><strong>Signal: </strong>Users are still on a journey to reduces being overwhelmed especially in this age where most things are cloud based and can be done from anywhere. </p><p id="0f4b3de6-90f6-4566-a14a-08958c6df4cb" class="">
+</p></details></li></ul><p id="3d5c42fb-390c-4efc-86e9-610c154f1345" class="">
+</p><h3 id="142aa678-436b-4cdf-b7a9-6cf330fd196b" class="">Context</h3><p id="13e85b41-42b0-4df5-949b-5810d2c1c7c9" class="">Hub is basically an integration node that can easily migrate your lists or means of organization from other apps and bring them into one app. This app can then sync with all your devices to bring all the things you need organized in one place.</p><p id="96852c9a-918d-4007-9549-a21bbb23087a" class="">It&#x27;s an AI enabled Dashboard that simplifies the complexity of certain organizational tasks or skills down to either <strong>pins</strong> on your dashboard or <strong>skills or power-ups </strong>for pins</p><p id="20f0519c-df96-43dc-b82a-711beaa66452" class=""><strong>Hub </strong>is the technology equivalent to when the phone was made. Before it, there were different tools we would need to carry around like a clock, calendar, calculator, measuring tape and so on, These tools were not necessarily due for an upgrade when they were moved on to the phone. But the reason for the iPhone was to put all these things in one place. The strength of this transition was <em><strong>synchrony</strong></em>.  The clock on the iphone told the same time as the clock on your desk. The calender on your iphone told the same date as that on your wall.   This synchrony was what made the migration and ease of use of iPhones smooth.</p><p id="fb403aab-8f4d-4ce9-8c00-2d35d392b2ef" class="">
+</p><h2 id="87e03ec8-cfec-46de-ad3c-e1612d2385f6" class="">MVP Feature (Minimum Viable Product)</h2><p id="1dd71305-1c8c-4a90-8a3a-0f0d8ce5f4b1" class="">. . .</p><h1 id="020c2133-024f-40c2-a480-c944ab084a6b" class="">👩‍🎤 Users</h1><div id="7c6eb9a3-5299-4a1d-ad03-d62fddd10bf7" class="collection-content"><h4 class="collection-title">User Personas</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Persona Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>User Type</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Role</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Age Range</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Location</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Education</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>App Usage Objective</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Features (User Persona)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to User stories (Title)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of Features (Related to Copy of User Personas (Related to Features (User Persona)))</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>App Stack</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of Features (Related to Copy of User Personas (Related to Features (User Persona))) 1</th></tr></thead><tbody><tr id="a22ade8d-94ba-4f85-9cb1-24bd7bb22b45"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%201%20a22ade8d94ba4f859cb124bd7bb22b45.html">Persona 1</a></td><td class="cell-p[&lt;*"><span class="selected-value select-value-color-yellow">Mobile User</span></td><td class="cell-%L*Z">Freelance Designer</td><td class="cell-3zHn">30-35</td><td class="cell-z(|5">NYC, USA</td><td class="cell-SHna">Master&#x27;s Degree</td><td class="cell-9U\7">Manage tasks, projects and  life</td><td class="cell-;}2,"><a href="https://www.notion.so/Feature-1-ed8f0fcdfc6243628aab70d77cf16ae6">Feature 1</a>, <a href="https://www.notion.so/Feature-2-757b554e4850465da065427c774102e0">Feature 2</a></td><td class="cell-Ad%G"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-4da0a05f035143d5a7b112d09560ce4a">As a user persona, I want goal so that some reason.</a>, <a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-c6989b3d01344d57b3a26f4ef16d8ab9">As a user persona, I want goal so that some reason.</a></td><td class="cell-|DnU"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%201%206a207f65dcb14365b8211c35210109b4.html">Feature 1</a>, <a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%202%20f8d517919d544847bb791489061ab895.html">Feature 2</a></td><td class="cell-e]Un"><span class="selected-value select-value-color-orange">Apple Calender</span><span class="selected-value select-value-color-orange">Slack</span><span class="selected-value select-value-color-gray">Todoist</span><span class="selected-value select-value-color-gray">Trello</span></td><td class="cell-CPe="><a href="https://www.notion.so/Feature-2-dfa3d43c500e47009820c96266739a59">Feature 2</a>, <a href="https://www.notion.so/Feature-1-ec33db722693463e8d5cf65978232674">Feature 1</a></td></tr><tr id="1844cb84-a3e2-4b50-bd74-310f361530cc"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%202%201844cb84a3e24b50bd74310f361530cc.html">Persona 2</a></td><td class="cell-p[&lt;*"><span class="selected-value select-value-color-pink">Web User</span></td><td class="cell-%L*Z">Stay at home dad</td><td class="cell-3zHn">40-45</td><td class="cell-z(|5">Berlin, Germany</td><td class="cell-SHna">PhD</td><td class="cell-9U\7">Manage Todo list, Grocery List, Chores and Research Work</td><td class="cell-;}2,"><a href="https://www.notion.so/Feature-1-ed8f0fcdfc6243628aab70d77cf16ae6">Feature 1</a>, <a href="https://www.notion.so/Feature-3-9eac0e7400074a9a82299c183f46584d">Feature 3</a></td><td class="cell-Ad%G"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-70e5845f1c664462bfa24f40360f6550">As a user persona, I want goal so that some reason.</a></td><td class="cell-|DnU"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%203%201c14a71d37e34ae4aace2bd6db50a629.html">Feature 3</a>, <a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%201%206a207f65dcb14365b8211c35210109b4.html">Feature 1</a></td><td class="cell-e]Un"><span class="selected-value select-value-color-blue">Apple Notes</span></td><td class="cell-CPe="><a href="https://www.notion.so/Feature-3-0e8bd12833ee4ab6b08a42efce2b8b4e">Feature 3</a>, <a href="https://www.notion.so/Feature-1-ec33db722693463e8d5cf65978232674">Feature 1</a></td></tr><tr id="86643447-5a2d-4ed6-a469-e160980f3542"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%203%20866434475a2d4ed6a469e160980f3542.html">Persona 3</a></td><td class="cell-p[&lt;*"><span class="selected-value select-value-color-yellow">Mobile User</span></td><td class="cell-%L*Z">Freelance Developer</td><td class="cell-3zHn">21-25</td><td class="cell-z(|5">Ottawa, Canada</td><td class="cell-SHna">Bachelor&#x27;s Degree</td><td class="cell-9U\7"></td><td class="cell-;}2,"></td><td class="cell-Ad%G"></td><td class="cell-|DnU"></td><td class="cell-e]Un"><span class="selected-value select-value-color-orange">Apple Calender</span><span class="selected-value select-value-color-blue">Apple Notes</span><span class="selected-value select-value-color-default">Google Calender</span><span class="selected-value select-value-color-brown">Notion</span><span class="selected-value select-value-color-gray">Todoist</span><span class="selected-value select-value-color-gray">Trello</span></td><td class="cell-CPe="></td></tr></tbody></table></div><div id="61470ff9-3714-4d3e-80b4-e0898bbcf41a" class="collection-content"><h4 class="collection-title">User Stories  (To be worked on)</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>User Story</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related Features</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related Personas</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of Features (Related to Copy of User Stories (Related Features))</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of Features (Related to Copy of User Stories (Related Features)) 1</th></tr></thead><tbody><tr id="a32fd7be-55cd-45fd-b400-988db35467ee"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%20a32fd7be55cd45fdb400988db35467ee.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-x7l&quot;"><a href="https://www.notion.so/Feature-2-757b554e4850465da065427c774102e0">Feature 2</a>, <a href="https://www.notion.so/Feature-3-9eac0e7400074a9a82299c183f46584d">Feature 3</a></td><td class="cell-=)[?"><a href="https://www.notion.so/Persona-1-97ba1302c6d443cb998b47952d7d716a">Persona 1</a></td><td class="cell-Ekzc"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%203%201c14a71d37e34ae4aace2bd6db50a629.html">Feature 3</a>, <a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%202%20f8d517919d544847bb791489061ab895.html">Feature 2</a></td><td class="cell-c}du"><a href="https://www.notion.so/Feature-3-0e8bd12833ee4ab6b08a42efce2b8b4e">Feature 3</a>, <a href="https://www.notion.so/Feature-2-dfa3d43c500e47009820c96266739a59">Feature 2</a></td></tr><tr id="ff93f39c-338c-4d0a-bc5d-d491f2959992"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%20ff93f39c338c4d0abc5dd491f2959992.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-x7l&quot;"><a href="https://www.notion.so/Feature-1-ed8f0fcdfc6243628aab70d77cf16ae6">Feature 1</a></td><td class="cell-=)[?"><a href="https://www.notion.so/Persona-1-97ba1302c6d443cb998b47952d7d716a">Persona 1</a></td><td class="cell-Ekzc"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%201%206a207f65dcb14365b8211c35210109b4.html">Feature 1</a></td><td class="cell-c}du"><a href="https://www.notion.so/Feature-1-ec33db722693463e8d5cf65978232674">Feature 1</a></td></tr><tr id="25eadec3-5820-4c1f-af8a-092c455ace50"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%2025eadec358204c1faf8a092c455ace50.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-x7l&quot;"><a href="https://www.notion.so/Feature-1-ed8f0fcdfc6243628aab70d77cf16ae6">Feature 1</a></td><td class="cell-=)[?"><a href="https://www.notion.so/Persona-2-9d93e2d85c694545be0c693a39c04114">Persona 2</a></td><td class="cell-Ekzc"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%201%206a207f65dcb14365b8211c35210109b4.html">Feature 1</a></td><td class="cell-c}du"><a href="https://www.notion.so/Feature-1-ec33db722693463e8d5cf65978232674">Feature 1</a></td></tr></tbody></table></div><p id="3e821bf0-8a56-4194-b9b5-b970022b2182" class=""><mark class="highlight-gray">User story format: As a </mark><code>user persona</code><mark class="highlight-gray">, I want </mark><mark class="highlight-red"><code>goal</code></mark><mark class="highlight-gray"> so that </mark><mark class="highlight-red"><code>some reason</code></mark><mark class="highlight-gray">.</mark></p><h1 id="054278a5-4609-43af-8330-4436455f71ab" class="">👩‍💻 Implementation  (To be worked on)</h1><div id="ce6bb93d-1dee-44e1-9b4c-4b26357cf0c3" class="collection-content"><h4 class="collection-title">Features</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Feature description</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related User Stories</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related Personas</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of User Personas (Related to Copy of Features (Related to Copy of User Personas (Related to Features (User Persona))))</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of User Personas (Related to Features (User Persona))</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of User Stories (Related Features)</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to Copy of User Stories (Related to Copy of Features (Related to Copy of User Stories (Related Features)))</th></tr></thead><tbody><tr id="6a207f65-dcb1-4365-b821-1c35210109b4"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%201%206a207f65dcb14365b8211c35210109b4.html">Feature 1</a></td><td class="cell-(i/0"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-c6989b3d01344d57b3a26f4ef16d8ab9">As a user persona, I want goal so that some reason.</a>, <a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-70e5845f1c664462bfa24f40360f6550">As a user persona, I want goal so that some reason.</a></td><td class="cell-Aaa1"><a href="https://www.notion.so/Persona-2-9d93e2d85c694545be0c693a39c04114">Persona 2</a>, <a href="https://www.notion.so/Persona-1-97ba1302c6d443cb998b47952d7d716a">Persona 1</a></td><td class="cell-FZAo"><a href="https://www.notion.so/Persona-2-082bdadb945a489da9a23bb53b982cae">Persona 2</a>, <a href="https://www.notion.so/Persona-1-39f24ee779014cf0bb5bb2387056dd27">Persona 1</a></td><td class="cell-ay[F"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%201%20a22ade8d94ba4f859cb124bd7bb22b45.html">Persona 1</a>, <a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%202%201844cb84a3e24b50bd74310f361530cc.html">Persona 2</a></td><td class="cell-tcRI"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%2025eadec358204c1faf8a092c455ace50.html">As a user persona, I want goal so that some reason.</a>, <a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%20ff93f39c338c4d0abc5dd491f2959992.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-}x}|"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-5a647bbbbc8e4608b6db33080b81ea57">As a user persona, I want goal so that some reason.</a>, <a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-dcb5f816a77c4f599f6158175664eab5">As a user persona, I want goal so that some reason.</a></td></tr><tr id="f8d51791-9d54-4847-bb79-1489061ab895"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%202%20f8d517919d544847bb791489061ab895.html">Feature 2</a></td><td class="cell-(i/0"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-4da0a05f035143d5a7b112d09560ce4a">As a user persona, I want goal so that some reason.</a></td><td class="cell-Aaa1"><a href="https://www.notion.so/Persona-1-97ba1302c6d443cb998b47952d7d716a">Persona 1</a></td><td class="cell-FZAo"><a href="https://www.notion.so/Persona-1-39f24ee779014cf0bb5bb2387056dd27">Persona 1</a></td><td class="cell-ay[F"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%201%20a22ade8d94ba4f859cb124bd7bb22b45.html">Persona 1</a></td><td class="cell-tcRI"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%20a32fd7be55cd45fdb400988db35467ee.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-}x}|"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-8c372cf97adb40bba912cd2eb549f572">As a user persona, I want goal so that some reason.</a></td></tr><tr id="1c14a71d-37e3-4ae4-aace-2bd6db50a629"><td class="cell-title"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Features%20ce6bb93d1dee44e19b4c4b26357cf0c3/Feature%203%201c14a71d37e34ae4aace2bd6db50a629.html">Feature 3</a></td><td class="cell-(i/0"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-4da0a05f035143d5a7b112d09560ce4a">As a user persona, I want goal so that some reason.</a></td><td class="cell-Aaa1"><a href="https://www.notion.so/Persona-2-9d93e2d85c694545be0c693a39c04114">Persona 2</a></td><td class="cell-FZAo"><a href="https://www.notion.so/Persona-2-082bdadb945a489da9a23bb53b982cae">Persona 2</a></td><td class="cell-ay[F"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Personas%207c6eb9a352994a1dad03d62fddd10bf7/Persona%202%201844cb84a3e24b50bd74310f361530cc.html">Persona 2</a></td><td class="cell-tcRI"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/User%20Stories%20(To%20be%20worked%20on)%2061470ff937144d3e80b4e0898bbcf41a/As%20a%20user%20persona,%20I%20want%20goal%20so%20that%20some%20reason%20a32fd7be55cd45fdb400988db35467ee.html">As a user persona, I want goal so that some reason.</a></td><td class="cell-}x}|"><a href="https://www.notion.so/As-a-user-persona-I-want-goal-so-that-some-reason-8c372cf97adb40bba912cd2eb549f572">As a user persona, I want goal so that some reason.</a></td></tr></tbody></table></div><h3 id="3f6c22e3-ff18-47cf-9d04-1ba06497ecf2" class="">Tech spec  (To be worked on)</h3><figure id="b34347a3-068d-4f71-895e-c2f4cfd9cf19" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Tech%20Spec%20b34347a3068d4f71895ec2f4cfd9cf19.html">Tech Spec</a></figure><p id="60e25961-4d0c-45fa-871c-4588f84f9a76" class="">
+</p><h3 id="df568bbe-c258-4c09-b166-29238954630b" class="">Mocks / Design  (To be worked on)</h3><figure id="4117ec9c-0178-421d-b00a-20b0670fc395"><div class="source"><a></a></div></figure><figure id="9870e2af-e668-4935-92bf-fdf9fa0d0add"><div class="source"><a></a></div></figure><figure id="86d253a0-2368-4f81-a203-1bfc3d25d6fd" class="image"><a href=""><img src=""/></a></figure><h3 id="0cd25749-8e38-4325-be74-62f3f4af8ae0" class="">Hub App File Structure (To be worked on)</h3><figure id="f4e73cf4-351e-462d-92c8-081e97e68445"><div class="source"><a href="https://whimsical.com/file-structure-W3n2efy3h3FjgPnWjxFUat">https://whimsical.com/file-structure-W3n2efy3h3FjgPnWjxFUat</a></div></figure><h3 id="9a916baf-7256-46ae-9bc9-ab7c34ac6dc5" class="">Other requirements</h3><p id="13f4976f-00af-4a6f-b9dd-c18c1cada54e" class=""><mark class="highlight-gray">List all other non-functional requirements</mark></p><h1 id="5eb9c4af-1367-4eeb-8d97-f6214f7dca35" class="">🙆‍♀️ Release Criteria</h1><h3 id="f6eb18e1-71d0-46d9-b27a-8532864f1c6b" class="">Metrics</h3><p id="8bb3f7e2-255c-42b2-ac67-230abd610d19" class=""><mark class="highlight-gray">List all metrics you&#x27;re tracking and the desired value/trend for each metric</mark></p><p id="c720821b-1744-48e2-b8b8-28fdd3e57032" class="">
+</p><h3 id="15a0d7c3-8a7c-4ed8-b9b2-39bb1404baa2" class="">Criteria</h3><ul id="04c55f5b-47fa-49ec-a0d9-027f559b8080" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Functionality</strong></span><ul id="550af9a1-cbb6-492c-a6b5-0ee0ccbc47b2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">List minimum feature set for release?</span></li></ul></li></ul><ul id="17abcfaa-88a4-4e4a-a1ef-bb989f29b877" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Usability</strong></span><ul id="4e09e528-2222-429f-b7b5-4ca5e3438958" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">List minimum usability threshold </span></li></ul></li></ul><ul id="8e9ad5c7-768c-483d-a2c5-762d4cc3f913" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Performance</strong></span><ul id="81993aec-aa6d-433d-ba5e-a075e9db1cdd" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">List minimum performance requirement</span></li></ul><p id="9e693499-4815-4c5c-9f6c-14eaf12c5d68" class="">
+</p></li></ul><h3 id="65ca4bbf-ba10-4132-95e3-d9660f31bd03" class="">📈 Success Metrics</h3><hr id="39d32303-412a-41a8-8f46-29d1ef6a8cee"/><ul id="d2701fd8-2812-4b50-a6f7-034bed09505d" class="bulleted-list"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit in diam et maximus. Suspendisse sed lacinia velit. Phasellus nec lectus ultricies, dapibus mi id, pellentesque justo. </li></ul><ul id="c06ede15-60bb-407e-85b7-9e3ce7631ebd" class="bulleted-list"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla hendrerit in diam et maximus. Suspendisse sed lacinia velit. Phasellus nec lectus ultricies, dapibus mi id, pellentesque justo. </li></ul><h3 id="1ab75a12-7263-43ed-8bea-11e01ca85248" class="">Test plan</h3><p id="9793cc61-f10e-4e6f-92bf-911b35b80e47" class=""><mark class="highlight-gray">Outline how you&#x27;re planning testing coverage</mark></p><h1 id="9492255c-a345-4cf1-90df-104c2fefed22" class="">🙅‍♀️ Out of Scope</h1><p id="a436f34b-f595-4c85-82f4-0a625cf13ecf" class=""><mark class="highlight-gray">List anything that is out of scope, this could be user persona&#x27;s, user stories, </mark></p><h1 id="15d95fcd-9691-4d38-8401-ac5a60fae976" class="">🤦‍♀️ Risks</h1><p id="1da0a3ad-937b-44d1-99b5-9588f5ea336c" class=""><mark class="highlight-gray">List any risks and potential mitigation</mark></p><h1 id="7f1b9ba2-65e7-466b-95c1-a0f96be009d8" class="">🤷‍♀️ Open Questions</h1><p id="05b66506-306f-40bf-ab9d-4d5b36ba32d6" class=""><mark class="highlight-gray">List any outstanding questions</mark></p><p id="c7aa691e-62d9-4563-b854-0304e38a086e" class="">
+</p><figure id="6c192517-7490-4108-8f2f-1c5d8eb0e795" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Note%20from%20Smashing%20Magazine%20about%20what%20you%20should%20%206c192517749041088f2f1c5d8eb0e795.html">Note from Smashing Magazine about what you should know about the app design process</a></figure><figure id="e06abb9f-ac50-49fe-9f4c-05854d800255" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Register%20for%20Activate%20Console%20e06abb9fac5049fe9f4c05854d800255.html">Register for Activate Console</a></figure><figure id="b8e4bbc5-dbee-4daa-a754-ced78c4b6f96" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/AWS%20Activate%20Program%20($100,000%20in%20credits)%20b8e4bbc5dbee4daaa754ced78c4b6f96.html">AWS Activate Program ($100,000 in credits)</a></figure><figure id="c9aa91ef-0919-4f93-84ce-0367344a7cac" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Alternate%20Program%20c9aa91ef09194f9384ce0367344a7cac.html">Alternate Program</a></figure><figure id="77f3c205-73ae-4d77-ba03-96bb9bb79137" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Microsoft&#x27;s%20alternative%2077f3c20573ae4d77ba0396bb9bb79137.html">Microsoft&#x27;s alternative</a></figure><figure id="c9ac85d7-25fe-4c17-8a50-b07674bb372b" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Secret%20Software%20Deals%20for%20Startups%20&amp;%20Entrepreneurs%20c9ac85d725fe4c178a50b07674bb372b.html">Secret | Software Deals for Startups &amp; Entrepreneurs</a></figure><figure id="d9dd3435-2e66-4984-a341-c83f7bbdf7e0" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Google%20clouds%20program%20d9dd34352e664984a341c83f7bbdf7e0.html">Google clouds program</a></figure><figure id="229b6f31-6005-49ee-9c1c-a3ac773786d6" class="link-to-page"><a href="Hub&#x27;s%20Project%20Management%2033eee59e8459405697f0b604039b62ad/Untitled%20229b6f31600549ee9c1ca3ac773786d6.html">Untitled</a></figure><p id="b8ff6a3a-0f9c-4056-9a4e-faa770456578" class="">
+</p><p id="c7e7f152-22ff-43fc-b2e5-e8d1419fcbe5" class="">
+</p><h1 id="c8c9d511-5c66-4c60-931a-f22d1879faf2" class=""> huge marketing tactic would be including Hub under Tik Tok life hacks. </h1></div></article></body></html>
